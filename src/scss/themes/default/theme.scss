@@ -1,0 +1,15 @@
+/*-----------------set------------------------*/
+@import '../../variables';
+@import '../../mixins';
+@import '../../global';
+@import '../../fonts';
+@import '../../normalize';
+/*-----------------components-----------------*/
+@import './components/nav';
+@import './components/heroCarousel';
+@import './components/moviesCarousel';
+@import './components/featureCarousel';
+/*-----------------pages----------------------*/
+@import './pages/home';
+@import './pages/details';
+@import './pages/contact';
