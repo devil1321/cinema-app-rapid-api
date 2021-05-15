@@ -5,7 +5,7 @@
     height: 70px;
     background-image: url('../../../../scss-images/bg_right.png');
     background-size: cover;
-    box-shadow: 0px 5px 100px inset black;
+    box-shadow: 0px 5px 200px inset black;
     @include createFlex(row,space-between,center,null);
     &__search{
         position: relative;
@@ -64,7 +64,9 @@
     }
     &__menu{
         margin-left: 25%;
-
+        position: relative;
+        top:0px;
+        left:0px;
         @include createFlex(row,space-between,center,null);
         i,p{
             cursor: pointer;
@@ -81,22 +83,26 @@
         }
     }
     &__dropdown{
-        position: relative;
-        top:0px;
-        left:0px;
         &-menu{
+            opacity:0;
             overflow: hidden;
             list-style-type: none;
             width: 120px;
-            height: 0px;
+            height: 140px;
             margin: 0px;
-            padding:0px;
+            padding: 0px;
             padding-bottom:0px;
             position: absolute;
-            top:42px;
-            left:-50px;
+            top:43px;
+            left:165px;
+            border-bottom-right-radius: 5px;
+            border-bottom-left-radius: 5px;
             background-color: $card-background;
+            transform:rotateY(90deg);
+            transition: all 500ms ease-in-out;
+            box-shadow: 0px 70px 50px rgb(15, 15, 15) inset;
             &-item{
+                cursor: pointer;
                 box-sizing: border-box;
                 padding: 5px 20px;
                 margin: 5px 0px;
