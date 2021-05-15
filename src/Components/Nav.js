@@ -1,20 +1,19 @@
 import React,{useEffect} from 'react'
 import { Link } from 'react-router-dom'
 
-const inputControl = (e) =>{
+const Nav = () => {
+    
+    const inputControl = (e) =>{
     e.stopPropagation()
-    const input = document.querySelector('.nav__search')
     const icon = document.querySelector('.nav__search i')
     const page = document.querySelector('html')
-    input.style.border = '1px solid gray'
     icon.style.color = '#FFBB00'
     page.addEventListener('click',(e)=>{
         e.stopPropagation();
-        input.style.border = '1px solid #151F2E'
         icon.style.color = 'grey'
     })
-}
-const handleMenu = (e) =>{
+    }
+    const handleMenu = (e) =>{
     e.stopPropagation()
     const menu = document.querySelector('.nav__dropdown-menu')
     menu.classList.toggle('open')
@@ -27,17 +26,16 @@ const handleMenu = (e) =>{
         menu.style.transform = 'rotateY(90deg)'
         menu.style.boxShadow = '0px 50px 50px rgb(15, 15, 15) inset'
     }
-}
-const handleMenuClose = (e) =>{
+    }
+    const handleMenuClose = (e) =>{
     e.stopPropagation()
     const menu = document.querySelector('.nav__dropdown-menu')
     menu.classList.remove('open')
     menu.style.opacity = '0'
     menu.style.transform = 'rotateY(90deg)'
     menu.style.boxShadow = '0px 50px 50px rgb(15, 15, 15) inset'
-}
+    }
 
-const Nav = () => {
     return (
         <div className="nav">
             <div className="nav__search" onClick={inputControl}>
@@ -56,10 +54,10 @@ const Nav = () => {
                 </div>
                 <i className="fa fa-caret-down nav__dropdown" onClick={(e)=>handleMenu(e)}></i>
                     <ul className="nav__dropdown-menu" onMouseLeave={(e)=>handleMenuClose(e)}>
-                        <li className="nav__dropdown-menu-item">Profile</li>
-                        <li className="nav__dropdown-menu-item">Settings</li>
-                        <li className="nav__dropdown-menu-item">Account</li>
-                        <li className="nav__dropdown-menu-item">Log Out</li>
+                        <li className="nav__dropdown-menu-item"><Link to="#">Profile</Link></li>
+                        <li className="nav__dropdown-menu-item"><Link to="#">Settings</Link></li>
+                        <li className="nav__dropdown-menu-item"><Link to="#">Account</Link></li>
+                        <li className="nav__dropdown-menu-item"><Link to='#'>Log Out</Link></li>
                     </ul>
                
             </div>

@@ -1,4 +1,8 @@
 .nav{
+    position: relative;
+    top:0px;
+    left:0px;
+    z-index: 10;
     box-sizing: border-box;
     padding: 0px 80px;
     width: 100vw;
@@ -15,7 +19,6 @@
         width: 200px;
         padding:8px 15px;
         background: $card-background;
-        border:1px solid  $card-background;
         border-radius: 25px;
         @include createFlex(row,space-between,center,null);
         input{
@@ -93,7 +96,7 @@
             padding: 0px;
             padding-bottom:0px;
             position: absolute;
-            top:43px;
+            top:45px;
             left:165px;
             border-bottom-right-radius: 5px;
             border-bottom-left-radius: 5px;
@@ -106,13 +109,17 @@
                 box-sizing: border-box;
                 padding: 5px 20px;
                 margin: 5px 0px;
-                color:gray;
-                font-family: Verdana, Geneva, Tahoma, sans-serif;
                 transition: all 100ms ease-in-out;
+                a{
+                    font-family: Verdana, Geneva, Tahoma, sans-serif;
+                    color:gray;
+                }
                 &:hover{
                     opacity: 0.7;
                     background-color: gray;
-                    color:$tabs-color;
+                    a{
+                        color:$tabs-color;
+                    }
                 }
             }
         }
