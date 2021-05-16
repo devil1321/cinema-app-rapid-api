@@ -13,7 +13,7 @@ export const DataContext = createContext({
 
 
 export const DataProvider = ({children}) => {
-    const [data,setData] = useState({})
+    const [data,setData] = useState([])
     const [model,setModel] = useState({})
     const [detailModel,setDetailModel] = useState({})
   
@@ -65,10 +65,35 @@ export const DataProvider = ({children}) => {
         //   end rapid api
         // api json
         // end api json
-        setData(Data)
+        
+        setDataModel(data,Data)
     },[])
 
-    
+    const setDataModel = (initData,fetchData) =>{
+        let tempData = [...initData]
+        fetchData.results.map(data=>{
+            const newModel = {
+                age:data.age,
+                image:data.backdropURLs.orginal,
+                cast:data.cast,
+                countries:data.countries,
+                generes:data.generes,
+                imdbID:data.imdbID,
+                imdbRating:data.imdbRating ,
+                imdbVoteCount:data.imdbVoteCount,
+                overview:data.overview,
+                poster:data.posterURLs.orginal,
+                streamingInfo:data.streamingInfo.netflix.us.link,
+                title:data.title,
+                year:data.year
+            }
+          
+            tempData.push(newModel)
+
+        })
+        setData(tempData)
+    }
+
     return(
         <DataContext.Provider value={{
             data,
