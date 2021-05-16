@@ -143,7 +143,7 @@
         "imdbID": "tt6119504",
         "imdbRating": 52,
         "imdbVoteCount": 5583,
-        "originalTitle": "#realityhigh",
+        "originalTitle": "#reality high",
         "overview": "When nerdy high schooler Dani finally attracts the interest of her longtime crush, she lands in the cross hairs of his ex, a social media celebrity.",
         "posterPath": "/wUXT3KEh6vjDzwYKiYWwdJNfZOW.jpg",
         "posterURLs": {
@@ -169,7 +169,7 @@
           }
         },
         "tagline": "",
-        "title": "#realityhigh",
+        "title": "#reality high",
         "tmdbID": "455656",
         "video": "3Sy7RofBmrs",
         "year": 2017
@@ -456,7 +456,7 @@
           "Paul Greengrass"
         ],
         "streamingInfo": {
-          "netflix": {
+          "netflix": {  
             "us": {
               "added": 1600283847,
               "leaving": 0,

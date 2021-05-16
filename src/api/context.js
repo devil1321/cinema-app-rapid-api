@@ -16,27 +16,6 @@ export const DataProvider = ({children}) => {
     const [data,setData] = useState([])
     const [model,setModel] = useState({})
     const [detailModel,setDetailModel] = useState({})
-  
-    const handleControls = (next,prev,current,move,carousel,carouselItem,margin) =>{
-        var items = document.querySelectorAll(`.${carouselItem}`)
-        var carousel = document.querySelector(`.${carousel}`)
-        var width = items[0].clientWidth + margin
-        var max = items.length
-        var startMove = 0
-        if(current < max && prev === null){
-            carousel.style.transform = `translateX(-${move}px)`
-        }else if(current >= -1 && next === null){
-            if(move === -width){
-                move = move * (-1)
-                carousel.style.transform = `translateX(${move}px)`
-            }else{
-                move = move * (-1)
-                carousel.style.transform = `translateX(${move}px)`
-            }
-        }else if(current === max || current === -2){
-            carousel.style.transform = `translateX(${startMove}px)`
-        }
-    }
 
     useEffect(()=>{
         // rapid api
@@ -68,22 +47,42 @@ export const DataProvider = ({children}) => {
         
         setDataModel(data,Data)
     },[])
-
+    const handleControls = (next,prev,current,move,carousel,carouselItem,margin) =>{
+        var items = document.querySelectorAll(`.${carouselItem}`)
+        var carousel = document.querySelector(`.${carousel}`)
+        var width = items[0].clientWidth + margin
+        var max = items.length
+        var startMove = 0
+        if(current < max && prev === null){
+            carousel.style.transform = `translateX(-${move}px)`
+        }else if(current >= -2 && next === null){
+            if(move === -width){
+                move = move * (-1)
+                carousel.style.transform = `translateX(${move}px)`
+            }else{
+                move = move * (-1)
+                carousel.style.transform = `translateX(${move}px)`
+            }
+        }else if(current === max || current === -2){
+            carousel.style.transform = `translateX(${startMove}px)`
+        }
+    }
     const setDataModel = (initData,fetchData) =>{
         let tempData = [...initData]
         fetchData.results.map(data=>{
             const newModel = {
                 age:data.age,
-                image:data.backdropURLs.orginal,
+                image:data.backdropURLs.original,
                 cast:data.cast,
                 countries:data.countries,
                 generes:data.generes,
                 imdbID:data.imdbID,
-                imdbRating:data.imdbRating ,
+                imdbRating:data.imdbRating,
                 imdbVoteCount:data.imdbVoteCount,
                 overview:data.overview,
-                poster:data.posterURLs.orginal,
-                streamingInfo:data.streamingInfo.netflix.us.link,
+                poster:data.posterURLs.original,
+                streamingLink:data.streamingInfo.netflix.us.link,
+                streamingInfo:data.streamingInfo,
                 title:data.title,
                 year:data.year
             }
