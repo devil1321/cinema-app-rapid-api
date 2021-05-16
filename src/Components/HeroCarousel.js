@@ -53,12 +53,12 @@ const HeroCarousel = () => {
                 setMovedNext(false)
                 setCurrent(current - 1)
                 setMove(move - (myCarouselItem.current.clientWidth + 30))}}
-                ref={prevRef}><i className="fa fa-arrow-left fa-2x"></i></div>
+                ref={prevRef}><i className="fa fa-chevron-left fa-2x"></i></div>
             <div className="next" onClick={()=>{
                 setCurrent(current + 1)
                 setMovedNext(true)
                 setMove(move + (myCarouselItem.current.clientWidth + 30))}}
-                ref={nextRef}><i className="fa fa-arrow-right fa-2x"></i></div>
+                ref={nextRef}><i className="fa fa-chevron-right fa-2x"></i></div>
         </div>
     )
 }

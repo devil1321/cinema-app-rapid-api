@@ -38,6 +38,7 @@ const Nav = () => {
 
     return (
         <div className="nav">
+            <img src="/assets/logo.png" alt=""/>
             <div className="nav__search" onClick={inputControl}>
                 <input type="text" placeholder="Search Movies..."/>
                 <i className="fa fa-search"></i>

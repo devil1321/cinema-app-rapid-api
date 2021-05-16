@@ -8,13 +8,18 @@
     &:hover{
         .prev,
         .next{
-               
-                box-shadow: 0px 0px 100px rgba(255,255,255,0.2) inset;
+            box-shadow: 0px 0px 100px rgba(255,255,255,0.2) inset;
+            i{
+                opacity: 0.5;
+                color:$tabs-color;
+            }
+            &:hover{
+                box-shadow: 0px 0px 100px rgba(255,255,255,0.3) inset;
                 i{
-                    opacity: 0.5;
-                    color:$tabs-color;
+                opacity: 0.8;
+                color:$tabs-color;
                 }
-           
+           }
         }
     }
     .prev,.next{
