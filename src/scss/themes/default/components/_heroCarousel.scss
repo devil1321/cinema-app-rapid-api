@@ -1,8 +1,53 @@
 .hero__carousel-wrapper{
+    cursor: pointer;
+    position: relative;
+    top:0px;
+    left:0px;
     width: 100vw;
     overflow: hidden;
+    &:hover{
+        .prev,
+        .next{
+            background-color: rgba(255,255,255,0.1);
+            i{
+                opacity: 0.2;
+            }
+            &:hover{
+                background-color: rgba(255,255,255,0.2);
+                i{
+                    opacity: 0.3;
+                }
+            }
+        }
+    }
+    .prev,.next{
+        margin: 0px 20px;
+        padding: 0px 40px;
+        position: absolute;
+        top:50%;
+        transform: (translateY(-50%));
+        height: 50%;
+        background-color: rgba(255,255,255,0.0);
+        transition: all 300ms ease-in-out;
+        i{
+            position: relative;
+            top:50%;
+            left:0px;
+            transform: translateY(-50%);
+            opacity: 0;
+            color:white;
+            transition: all 300ms ease-in-out;
+        }
+    }
+    .next{
+        right: 25px;
+    }
+    .prev{
+        left: 10px;
+    }
 }
 .hero__carousel{
+
     max-width: 100vw;
     @include createFlex(row,flex-start,center,null);
       transition: all 1s ease-in-out;
@@ -24,4 +69,5 @@
         top:0px;
         left:0px;
     }   
+  
 }
