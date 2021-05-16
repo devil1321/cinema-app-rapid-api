@@ -5,7 +5,7 @@ const HeroCarousel = () => {
     const [current,setCurrent] = useState(0)
     const [move,setMove] = useState(0)
     const [movedNext,setMovedNext] = useState(false)
-    const {handleCarousel,handleControls } = useContext(DataContext)
+    const {handleControls} = useContext(DataContext)
     const myCarousel = useRef()
     const myCarouselItem = useRef()
     const myCarouselWrapper = useRef()
@@ -26,13 +26,12 @@ const HeroCarousel = () => {
         }
         if(movedNext){
             handleControls(next,null,current,move,carousel,carouselItem,30)
-        }else{
+        }else{        
             handleControls(null,prev,current,move,carousel,carouselItem,30)
         }
-        // handleCarousel(carousel,carouselItem,30)
     },[move,movedNext])
     return (
-        <div className="hero__carousel-wrapper" ref={myCarouselWrapper}>
+        <div className="hero__carousel-wrapper" >
             <div className="hero__carousel" ref={myCarousel}>
                 <div className="hero__carousel-item" ref={myCarouselItem}>
                     <img className="hero__carousel-overlay" src="/assets/home/overlay.png" alt="" />
@@ -60,7 +59,6 @@ const HeroCarousel = () => {
                 </div>
             </div>
             <div className="prev" onClick={()=>{
-              
                 setMovedNext(false)
                 setCurrent(current - 1)
                 setMove(move - (myCarouselItem.current.clientWidth + 30))}}

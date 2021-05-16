@@ -5,7 +5,6 @@ export const DataContext = createContext({
     model:{},
     detailModel:{},
     data:{},
-    handleCarousel:()=>{},
     handleControls:()=>{},
     setModel:()=>{},
     setDetailModel:()=>{},
@@ -17,35 +16,7 @@ export const DataProvider = ({children}) => {
     const [data,setData] = useState({})
     const [model,setModel] = useState({})
     const [detailModel,setDetailModel] = useState({})
-    const handleCarousel = (carousel,carouselItem,margin) => {
-        let isSet = false
-        if(!isSet){
-            var item = document.querySelector(`.${carouselItem}`)
-            var items = document.querySelectorAll(`.${carouselItem}`)
-            var carousel = document.querySelector(`.${carousel}`)
-            var current = 0
-            var max = items.length
-            var move = item.clientWidth + margin
-            var startMove = 0
-        }
-        setInterval(()=>{
-            if(current < max - 3){
-                current++
-                carousel.style.transform = `translateX(-${move}px)`
-                move += item.clientWidth + margin
-            }else{
-                carousel.style.transition = 'none'   
-                carousel.style.transform = `translateX(${startMove}px)`
-                current = 0
-                move = item.clientWidth + margin
-                    setTimeout(()=>{
-                        carousel.style.transition = 'all 1s ease-in-out'   
-                    },1000)
-                }    
-        },2000)
-
-    }
-
+  
     const handleControls = (next,prev,current,move,carousel,carouselItem,margin) =>{
         var items = document.querySelectorAll(`.${carouselItem}`)
         var carousel = document.querySelector(`.${carousel}`)
@@ -104,7 +75,6 @@ export const DataProvider = ({children}) => {
             model,
             detailModel,
             handleControls,
-            handleCarousel,
             setData,
             setModel,
             setDetailModel
