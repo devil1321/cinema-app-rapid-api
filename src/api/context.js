@@ -61,7 +61,7 @@ export const DataProvider = ({children}) => {
         }else if(current >= -2 && next === null){
             if(move === -width){
                 move = move * (-1)
-                carousel.style.transform = `translateX(${move}px)`
+                carousel.style.transform = `translateX(${move}px)`                
             }else{
                 move = move * (-1)
                 carousel.style.transform = `translateX(${move}px)`

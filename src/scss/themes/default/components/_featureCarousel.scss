@@ -12,8 +12,9 @@
     }
     &__carousel{
         margin-bottom: 50px;
-        @include createFlex(row,center,center,null);
-        transform: translateX(110px);
+        @include createFlex(row,flex-start,center,null);
+        transform: translateX(0px);
+        transition: all 100ms linear;
         &-swiper{
             .feature__item{
                 cursor:grab;

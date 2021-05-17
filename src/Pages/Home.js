@@ -9,7 +9,7 @@ const Home = () => {
         <div className="home">
             <Nav />
             <HeroCarousel />
-            <FeatureCarousel data={data}/>
+            <FeatureCarousel dataProp={data}/>
         </div>
     )
 }
