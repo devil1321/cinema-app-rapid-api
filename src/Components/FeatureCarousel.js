@@ -29,16 +29,20 @@ const FeatureCarousel = () => {
         let carouselWrapper = document.querySelector('.feature__carousel')
         if(isMove){
         var play = setInterval(()=>{
-            if(newMove > 4 * 50){
+            if(newMove > 4){
                 setWay(false)
-            }else if(newMove < -155 * 50){
+                for (var i = 1; i < 999999; i++){ window.clearInterval(i)}
+                handlePlay(4,isMove)
+            } else if(newMove < -155){
                 setWay(true)
+                    for (var i = 1; i < 999999; i++){ window.clearInterval(i)}
+                    handlePlay(-155,isMove)
             }
             if(way){
                 newMove += (1/40)
                 setMove(newMove)
             }else{
-                newMove -= (1/40)
+                newMove = newMove -= (1/40)
                 setMove(newMove)
             }
             carouselWrapper.style.transform = `translateX(${newMove}%)`
@@ -73,7 +77,7 @@ const FeatureCarousel = () => {
         //         handleControls(null,prev,current,moveBy,carousel,carouselItem,12)
         //     }
         // }
-    },[fakeData,isSet,data,isMove])
+    },[fakeData,isSet,data,isMove,way])
 
     return (
         <div className="feature__carousel-wrapper">
