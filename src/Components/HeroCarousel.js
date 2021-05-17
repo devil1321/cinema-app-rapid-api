@@ -35,12 +35,12 @@ const HeroCarousel = () => {
         <div className="hero__carousel-wrapper" >
             <div className="hero__carousel" ref={myCarousel}>
             {data.map(dataItem=>{
-            const { age, image, cast, countries, generes, imdbID, imdbRating, imdbVoteCount, overview, poster, streamingInfo, streamingLink, title, year } = dataItem
+            const { age, image, cast, countries, genres, imdbID, imdbRating, imdbVoteCount, overview, poster, streamingInfo, streamingLink, title, year } = dataItem
                 return  <div className="hero__carousel-item" ref={myCarouselItem}>
                             <img className="hero__carousel-overlay" src="/assets/home/overlay.png" alt="" />
                             <img className="hero__carousel-slide" src={image} alt="" />
                             <div className="hero__carousel-item-text">
-                                <h2 className="title">{title.slice(1,title.length).toUpperCase()}</h2>
+                                <h2 className="title">{title.replaceAll("#","").toUpperCase()}</h2>
                                 <h3 className="country"><span>Country :</span> {countries.map(country => country + ' ')}</h3>
                                 <h3 className="age"><span >Age :</span> {age}</h3>
                                 <h3 className="platform"><span >Platform :</span> {Object.keys(streamingInfo)}</h3>

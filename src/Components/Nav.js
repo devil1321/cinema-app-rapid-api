@@ -1,8 +1,10 @@
-import React,{useEffect} from 'react'
+import React,{useEffect,useState,useContext} from 'react'
+import {DataContext} from '../api/context'
 import { Link } from 'react-router-dom'
 
 const Nav = () => {
-    
+    const [searchItems,setSearchItems] = useState([])
+    const {data, handleSearch } = useContext(DataContext)
     const inputControl = (e) =>{
     e.stopPropagation()
     const icon = document.querySelector('.nav__search i')
@@ -40,10 +42,15 @@ const Nav = () => {
         <div className="nav">
             <img src="/assets/logo.png" alt=""/>
             <div className="nav__search" onClick={inputControl}>
-                <input type="text" placeholder="Search Movies..."/>
+                <input type="text" placeholder="Search Movies..." onInput={(e)=>{
+                        let result = handleSearch(data,e.target.value)                        
+                        setSearchItems(result)
+                    }}/>
                 <i className="fa fa-search"></i>
                 <ul className="nav__search-results">
-                    
+                    {searchItems.map(item=>{
+                        return <li className="nav__search-results-item" key={item.id}>{item.title}</li>
+                    })}
                 </ul>
             </div>
             <div className="nav__menu">

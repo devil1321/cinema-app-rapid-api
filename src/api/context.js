@@ -1,10 +1,13 @@
 import React,{ createContext, useState, useEffect } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios'
-import Data from './copy.json'
+import Movies from './movies.json'
+import Genres from './generes.json'
 export const DataContext = createContext({
     model:{},
     detailModel:{},
     data:{},
+    handleSearch:()=>{},
     handleControls:()=>{},
     setModel:()=>{},
     setDetailModel:()=>{},
@@ -45,7 +48,7 @@ export const DataProvider = ({children}) => {
         // api json
         // end api json
         
-        setDataModel(data,Data)
+        setDataModel(data,Movies,Genres)
     },[])
     const handleControls = (next,prev,current,move,carousel,carouselItem,margin) =>{
         var items = document.querySelectorAll(`.${carouselItem}`)
@@ -67,15 +70,27 @@ export const DataProvider = ({children}) => {
             carousel.style.transform = `translateX(${startMove}px)`
         }
     }
-    const setDataModel = (initData,fetchData) =>{
+    const setDataModel = (initData,fetchMovies,fetchGenres) =>{
         let tempData = [...initData]
-        fetchData.results.map(data=>{
+        let tempGenere = []
+        fetchMovies.results.map(data=>{
+            let genresKeys = Object.keys(fetchGenres)
+            data.genres.forEach(genere => {
+                genresKeys.forEach(genereKey=>{
+                    genereKey = parseInt(genereKey)
+                    genere = parseInt(genere)
+                    if(genere === genereKey){
+                        tempGenere.push(fetchGenres[genereKey])
+                    }
+                })
+            })
             const newModel = {
+                id:uuidv4(),
                 age:data.age,
                 image:data.backdropURLs.original,
                 cast:data.cast,
                 countries:data.countries,
-                generes:data.generes,
+                genres:tempGenere,
                 imdbID:data.imdbID,
                 imdbRating:data.imdbRating,
                 imdbVoteCount:data.imdbVoteCount,
@@ -86,18 +101,34 @@ export const DataProvider = ({children}) => {
                 title:data.title,
                 year:data.year
             }
-          
             tempData.push(newModel)
-
+            tempGenere = []
         })
         setData(tempData)
     }
-
+const handleSearch = (data,searchText) =>{
+    let matches = data.filter(item=>{
+        const regex = new RegExp(`${searchText}`,'gi')
+        return item.title.match(regex)
+    })
+    if(searchText.length === 0){
+        matches = []
+    }
+    matches = matches.map(match=>{
+        let model = {
+            id:match.id,
+            title:match.title.replaceAll("#",""),
+        }
+        return model
+    })
+    return matches
+}
     return(
         <DataContext.Provider value={{
             data,
             model,
             detailModel,
+            handleSearch,
             handleControls,
             setData,
             setModel,

@@ -28,7 +28,7 @@ const FeatureCarousel = ({data}) => {
             </div>
             <div className="feature__carousel">
                 {fakeData.map(dataItem=> {
-                    const { age, image, cast, countries, generes, imdbID, imdbRating, imdbVoteCount, overview, poster, streamingInfo, streamingLink, title, year } = dataItem
+                    const { age, image, cast, countries, genres, imdbID, imdbRating, imdbVoteCount, overview, poster, streamingInfo, streamingLink, title, year } = dataItem
                     return  <div className="feature__item">
                               <img src={poster} alt="poster" />
                             </div>
