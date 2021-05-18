@@ -1,11 +1,27 @@
 import React,{useState,useEffect,useContext} from 'react'
+import { Link } from 'react-router-dom'
 import Nav  from '../Components/Nav'
 import { DataContext } from '../api/context'
 const Details = () => {
-    const { detailModel,data, setDetailModel} = useContext(DataContext)
+    const { detailModel,data, setDetailModel,handleDetailModel} = useContext(DataContext)
     const [categories,setCategories] = useState([])
+    const [categoryResult,setCategoryResult] = useState([])
     if(detailModel !== null){
         var {age, cast, genres, imdbID, imdbRating, imdbVoteCount, overview, poster, streamingLink, title, year } = detailModel
+    }
+    const handleResult = (text,data) =>{
+
+        let items = [...document.querySelectorAll('.details__result-item')]
+            let time = 0
+            items.reverse().forEach(item=> {
+                setTimeout(()=>{
+                    item.style.animation = 'comesOut 300ms ease-in-out forwards'
+                },time+=300)
+            })
+            setTimeout(()=>{
+                let result = data.filter(item=> item.genres.includes(text))
+                setCategoryResult(result)
+            },time+300)
     }
     useEffect(()=>{
         if(detailModel === null){
@@ -20,6 +36,7 @@ const Details = () => {
             localStorage.setItem('movie',JSON.stringify(detailModel))
         } 
         if(data.length > 0 && categories.length === 0){
+            handleResult('Drama',data)
             let tempCategories = [...categories]
             data.forEach(item=>{
                 item.genres.forEach(genre =>{
@@ -30,7 +47,20 @@ const Details = () => {
             })
             setCategories(tempCategories)
         }
-    },[detailModel,data,categories])
+     
+
+        
+            let items = document.querySelectorAll('.details__result-item')
+            let time = 0
+            items.forEach(item=> {
+                item.style.top = '50px'
+                item.style.opacity = '0'
+                setTimeout(()=>{
+                    item.style.animation = 'comesIn 300ms ease-in-out forwards'
+                },time+=300)
+            })
+        
+    },[detailModel,data,categories,categoryResult])
     return (
         <div className="details">
             <Nav />
@@ -68,8 +98,32 @@ const Details = () => {
             : null }
             <div className="details__c-nav">
                 <ul className="details__c-nav-list">
-                   
+                    {categories.map(category=><li onClick={(e)=>{handleResult(e.target.textContent,data)}} className="details__c-nav-list-item">{category}</li>)}
                 </ul>
+            </div>
+            <div className="details__result">
+                {categoryResult.map((result,index) =>{
+                    const {image, poster, title, imdbID, streamingLink,imdbRating,year } = result
+                    return      <div className="details__result-item">
+                                <Link to="/details" key={index} onClick={()=>{handleDetailModel(result.id)}}>
+                                <div className="details__result-image">
+                                    <div className="overlay"></div>
+                                    <img src={poster} alt="" />
+                                </div>
+                                </Link>
+                                    <div className="details__result-text">
+                                        <h3>{title.replaceAll("#","").toUpperCase()}</h3> 
+                                        <div>
+                                            <a href={`https://www.imdb.com/title/${imdbID}`}>IMDb</a> | <a href={streamingLink}>Netflix</a>{}
+                                        </div>                                   
+                                        <div className="details__result-text-footer">
+                                            <h3>Rating : {imdbRating}</h3>
+                                            <h3>Year : {year}</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                         
+                })}
             </div>
         </div>
     )

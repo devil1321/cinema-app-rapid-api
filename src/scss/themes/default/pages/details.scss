@@ -54,4 +54,141 @@
             color:$tabs-color;
         }
     }
+    &__c-nav{
+        padding:0px 80px;
+        &-list{
+            padding:0px;
+            margin:0px;
+            list-style-type: none;
+            background-color: $card-background;
+            @include createFlex(row,space-between,center,null);
+            box-shadow: 0px 20px 70px inset black,0px 1px 2px inset red;
+            height: 50px;
+            &-item{
+                cursor: pointer;
+                height: 90%;
+                width: 100%;
+                max-height: 50%;
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                font-size: pxToRem(14);
+                transition: all 500ms ease-in-out;
+                &:hover{
+                    color:$tabs-color;
+                    background-color: rgba(180, 180, 180, 0.158);
+                    background-size: 200%
+                }
+                @include createFlex(row,center,center,null);
+                &:not(:last-child){
+                    
+                    border-right: 1px solid gray;
+                }
+            }
+        }
+    }
+    &__result{
+        padding: 50px 80px 0px 30px;
+        box-shadow: 0px 100px 1000px inset $background-dark;
+        @include createFlex(row,center,flex-start,wrap);
+        &-item{
+            cursor: pointer;
+            overflow: hidden;
+            position: relative;
+            top:0px;
+            left:30px;
+            width: 20%;
+            margin: 10px 20px;
+            opacity: 0;
+            @keyframes comesOut {
+                0%{
+                    top:0px;
+                    opacity: 1;
+                }
+                100%{
+                    top:50px;
+                    opacity: 0;
+                }
+            }
+            @keyframes comesIn {
+                0%{
+                    opacity: 0;
+                    top:50px;
+                }
+                100%{
+                    opacity: 1;
+                    top:0px;
+                }
+            }
+
+      
+            &:hover{
+                .overlay{
+                    box-shadow: 0px 0px 0px inset black;
+                }
+                img{
+                    transform: scale(1.1);
+                }
+                .details__result-text{
+                    left:0px;
+                    top:72.5%;
+                    opacity: 1;
+                    box-shadow: 0px 50px 100px inset black;
+                }
+            }
+        }
+        &-image{
+            position: relative;
+            top:0px;
+            left: 0px;;
+            .overlay{
+                position: absolute;
+                width: 100%;
+                height:100%;
+                z-index: 2;
+                top:0px;
+                left:0px;
+                box-shadow: 0px 0px 100px inset black;
+                transition: all 1s ease-in-out;
+            }
+            img{
+                width: 100%;
+                transition: all 1s ease-in-out;
+            }
+        }
+        &-text{
+            opacity: 0;
+            width: 92%;
+            height: 85px;
+            padding:10px;
+            position: absolute;
+            top: -100px;
+            left: 0px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            background-color: $card-background;
+            transition: all 500ms ease-in-out;
+            box-shadow: 0px 0px 100px inset black;
+            &:hover{
+                box-shadow: 0px -50px 100px inset black;                
+            }
+            @include createFlex(column,space-between,flex-start,null);    
+            a{
+                font-size: pxToRem(14);
+                color: red;
+                font-weight: bold !important;
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                transition: none;
+            }      
+            & > h3{
+                color:$tabs-color;
+            }      
+            h3{
+                font-size: pxToRem(14);
+                margin: 5px 0px;
+            }
+            &-footer{
+                h3{font-weight: 500;}
+                width: 100%;
+                @include createFlex(row,space-between,center,null);
+            }
+        }
+    }
 }
