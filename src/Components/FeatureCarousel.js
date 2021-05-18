@@ -11,8 +11,8 @@ SwiperCore.use([Pagination,Navigation]);
 const FeatureCarousel = () => {
     const [current,setCurrent] = useState(0)
     const [move,setMove] = useState(0)
-    const [moveBy,setMoveBy] = useState(0)
-    const [movedNext,setMovedNext] = useState(false)
+    const [moveBy,setMoveBy]= useState(0)
+    const [movedNext,setMovedNext] = useState(null)
     const [isMove,setIsMove] = useState(true)
     const [fakeData,setFakeData] = useState([])
     const [isSet,setIsSet] = useState(false)
@@ -28,29 +28,26 @@ const FeatureCarousel = () => {
     const handlePlay = (newMove,isMove) =>{
         let carouselWrapper = document.querySelector('.feature__carousel')
         if(isMove){
+        carouselWrapper.style.transition = "all 100ms linear"
         var play = setInterval(()=>{
-            if(newMove > 4){
-                setWay(false)
-                for (var i = 1; i < 999999; i++){ window.clearInterval(i)}
-                handlePlay(4,isMove)
-            } else if(newMove < -155){
-                setWay(true)
-                    for (var i = 1; i < 999999; i++){ window.clearInterval(i)}
-                    handlePlay(-155,isMove)
-            }
-            if(way){
-                newMove += (1/40)
-                setMove(newMove)
-            }else{
-                newMove = newMove -= (1/40)
-                setMove(newMove)
-            }
             carouselWrapper.style.transform = `translateX(${newMove}%)`
+                if(newMove > 4){
+                    setWay(false)
+                } else if(newMove < -155){
+                    setWay(true)
+                }
+                if(way){
+                    newMove += (1/40)
+                    setMove(newMove)
+
+                }else{
+                    newMove = newMove -= (1/40)
+                    setMove(newMove)
+
+                }
             })    
         }else{
-           
             for (var i = 1; i < 999999; i++){ window.clearInterval(i)}
-
         }
     }
     useEffect(()=>{
@@ -65,35 +62,51 @@ const FeatureCarousel = () => {
                 setIsSet(true)
             }
         }      
-        handlePlay(move,isMove)
-      
+        if(isSet){    
+            let carousel = document.querySelector('.feature__carousel')
+            carousel.style.transition = "all 1s linear"
+            if(movedNext == true && !isMove){
+                if(moveBy < -155){
+                    setMoveBy(4)
+                    setWay(false)
+                }
 
-        // if(isSet){    
-        //     var carousel = myCarousel.current.classList.value
-        //     var carouselItem = myCarouselItem.current.classList.value
-        //     if(movedNext && !isMove){
-        //         handleControls(next,null,current,moveBy,carousel,carouselItem,12)
-        //     }else if(!movedNext & !isMove){        
-        //         handleControls(null,prev,current,moveBy,carousel,carouselItem,12)
-        //     }
-        // }
-    },[fakeData,isSet,data,isMove,way])
+                carousel.style.transform = `translateX(${moveBy}%)`
+                setMove(moveBy)
+
+            }else if(movedNext == false & !isMove){        
+                if(moveBy > 4){
+                    setMoveBy(-155)
+                    setWay(true)
+                }
+                carousel.style.transform = `translateX(${moveBy}%)`
+                setMove(moveBy)
+        
+            }
+        }
+        handlePlay(move,isMove)
+
+    },[fakeData,isSet,data,isMove,way,movedNext,moveBy])
 
     return (
         <div className="feature__carousel-wrapper">
             <div className="feature__controls">
                 <div className="prev" ref={prevRef}
                 onClick={()=>{
-                    setMoveBy(moveBy + myCarouselItem.current.clientWidth)
+                    var body = document.body.clientWidth
+                    setMoveBy(move + ((myCarouselItem.current.clientWidth/body) * 100))
                     setMovedNext(false)
                     setIsMove(false)
+           
                 }}>
                 <i className="fa fa-chevron-left"></i></div>
                 <div className="next" ref={nextRef}
                 onClick={()=>{
-                    setMoveBy(moveBy - myCarouselItem.current.clientWidth)
+                    var body = document.body.clientWidth
+                    setMoveBy(move - ((myCarouselItem.current.clientWidth/body) * 100))
                     setMovedNext(true)
                     setIsMove(false)
+        
                 }}>
                 <i className="fa fa-chevron-right"></i></div>
             </div>

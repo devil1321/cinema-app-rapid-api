@@ -56,6 +56,7 @@ export const DataProvider = ({children}) => {
         var width = items[0].clientWidth + margin
         var max = items.length
         var startMove = 0
+        carousel.style.transition = "all 1s ease-in-out"
         if(current < max && prev === null){
             carousel.style.transform = `translateX(-${move}px)`
         }else if(current >= -2 && next === null){
