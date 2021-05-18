@@ -50,7 +50,6 @@ export const DataProvider = ({children}) => {
         // api json
         // end api json
         setDataModel(data,Movies,Genres)
-    
     },[])
     const handleControls = (next,prev,current,move,carousel,carouselItem,margin) =>{
         var items = document.querySelectorAll(`.${carouselItem}`)
@@ -111,9 +110,13 @@ export const DataProvider = ({children}) => {
     }
     const handleSearch = (data,searchText) =>{
     let matches = data.filter(item=>{
-        const regex = new RegExp(`${searchText}`,'gi')
-        return item.title.match(regex)
+        searchText = searchText.replaceAll(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&")
+        searchText = searchText.replaceAll("#","")
+        const regex = new RegExp(`^${searchText}`,'gi')
+    
+        return item.title.replaceAll("#","").match(regex)
     })
+    console.log(matches)
     if(searchText.length === 0){
         matches = []
     }
