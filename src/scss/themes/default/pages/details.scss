@@ -1,0 +1,57 @@
+.details{
+    color:white;
+  
+    &__content{
+        padding: 0px 80px 50px;
+        @include createFlex(row,space-between,center,wrap);
+    }
+    &__image-container{
+        width: 40%;
+        img{
+            padding-top: 50px;
+            display: block;
+            margin-left: auto;
+            width: 70%;
+        }
+    }
+    &__count{
+        width: 70%;
+        margin-left: auto;
+        p{
+            font-weight: bold;
+            color:$tabs-color;
+        }
+    }
+    &__text{
+        padding-left: 50px;
+        width:55%;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        h1{
+            color:$tabs-color;
+        }
+        h2{ 
+            i{
+                margin-left: 30px;
+                margin-right: 0px;
+                color:red;               
+            }
+            a{
+                color:red;
+            }
+       
+        }
+        h3{
+            color:grey;
+        }
+        p{
+            line-height: 1.5;
+        }
+        p:nth-of-type(2){
+            line-height: 2;
+            font-style: italic;
+        }
+        p:last-of-type{
+            color:$tabs-color;
+        }
+    }
+}

@@ -12,7 +12,7 @@
     box-shadow: 0px 5px 200px inset black;
     @include createFlex(row,space-between,center,null);
     img{
-        width: 8%;
+        width: 80%;
     }
     &__search{
         margin-left: 10%;

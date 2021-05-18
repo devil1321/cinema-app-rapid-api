@@ -7,6 +7,7 @@ export const DataContext = createContext({
     model:{},
     detailModel:{},
     data:{},
+    handleDetailModel:()=>{},
     handleSearch:()=>{},
     handleControls:()=>{},
     setModel:()=>{},
@@ -18,9 +19,10 @@ export const DataContext = createContext({
 export const DataProvider = ({children}) => {
     const [data,setData] = useState([])
     const [model,setModel] = useState({})
-    const [detailModel,setDetailModel] = useState({})
+    const [detailModel,setDetailModel] = useState(null)
 
     useEffect(()=>{
+
         // rapid api
         // const options = {
         //     method: 'GET',
@@ -47,8 +49,8 @@ export const DataProvider = ({children}) => {
         //   end rapid api
         // api json
         // end api json
-        
         setDataModel(data,Movies,Genres)
+    
     },[])
     const handleControls = (next,prev,current,move,carousel,carouselItem,margin) =>{
         var items = document.querySelectorAll(`.${carouselItem}`)
@@ -107,7 +109,7 @@ export const DataProvider = ({children}) => {
         })
         setData(tempData)
     }
-const handleSearch = (data,searchText) =>{
+    const handleSearch = (data,searchText) =>{
     let matches = data.filter(item=>{
         const regex = new RegExp(`${searchText}`,'gi')
         return item.title.match(regex)
@@ -123,12 +125,17 @@ const handleSearch = (data,searchText) =>{
         return model
     })
     return matches
-}
+    }
+    const handleDetailModel = (id) =>{
+        setDetailModel(data.find(item => item.id === id))
+    }
+
     return(
         <DataContext.Provider value={{
             data,
             model,
             detailModel,
+            handleDetailModel,
             handleSearch,
             handleControls,
             setData,

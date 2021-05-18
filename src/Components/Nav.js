@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 const Nav = () => {
     const [searchItems,setSearchItems] = useState([])
-    const {data, handleSearch } = useContext(DataContext)
+    const {data, handleSearch, handleDetailModel} = useContext(DataContext)
     const inputControl = (e) =>{
     e.stopPropagation()
     const icon = document.querySelector('.nav__search i')
@@ -40,7 +40,9 @@ const Nav = () => {
 
     return (
         <div className="nav">
+        <Link to="/">
             <img src="/assets/logo.png" alt=""/>
+        </Link>
             <div className="nav__search" onClick={inputControl}>
                 <input type="text" placeholder="Search Movies..." onInput={(e)=>{
                         let result = handleSearch(data,e.target.value)                        
@@ -49,7 +51,7 @@ const Nav = () => {
                 <i className="fa fa-search"></i>
                 <ul className="nav__search-results">
                     {searchItems.map(item=>{
-                        return <li className="nav__search-results-item" key={item.id}>{item.title}</li>
+                        return    <Link to="/details"><li onClick={()=>{handleDetailModel(item.id)}}className="nav__search-results-item" key={item.id}>{item.title}</li></Link>
                     })}
                 </ul>
             </div>

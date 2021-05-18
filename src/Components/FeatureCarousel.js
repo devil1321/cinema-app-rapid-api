@@ -1,6 +1,6 @@
 import React,{useState,useEffect,useContext,useRef} from 'react'
 import { DataContext } from '../api/context'
-
+import {Link} from 'react-router-dom'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Pagination,Navigation} from 'swiper/core';
 import 'swiper/swiper.scss';
@@ -17,7 +17,7 @@ const FeatureCarousel = () => {
     const [fakeData,setFakeData] = useState([])
     const [isSet,setIsSet] = useState(false)
     const [way,setWay] = useState(false)
-    const { handleControls, data } = useContext(DataContext)
+    const { handleControls,handleDetailModel, data } = useContext(DataContext)
 
     const myCarousel = useRef()
     const myCarouselItem = useRef()
@@ -94,16 +94,15 @@ const FeatureCarousel = () => {
                 <div className="prev" ref={prevRef}
                 onClick={()=>{
                     var body = document.body.clientWidth
-                    setMoveBy(move + ((myCarouselItem.current.clientWidth/body) * 100))
+                    setMoveBy(move + ((myCarouselItem.current.clientWidth / body) * 100))
                     setMovedNext(false)
                     setIsMove(false)
-           
                 }}>
                 <i className="fa fa-chevron-left"></i></div>
                 <div className="next" ref={nextRef}
                 onClick={()=>{
                     var body = document.body.clientWidth
-                    setMoveBy(move - ((myCarouselItem.current.clientWidth/body) * 100))
+                    setMoveBy(move - ((myCarouselItem.current.clientWidth / body) * 100))
                     setMovedNext(true)
                     setIsMove(false)
         
@@ -112,9 +111,11 @@ const FeatureCarousel = () => {
             </div>
             <div className="feature__carousel" ref={myCarousel}>
                 {fakeData.map(dataItem=> {
-                    const { age, image, cast, countries, genres, imdbID, imdbRating, imdbVoteCount, overview, poster, streamingInfo, streamingLink, title, year } = dataItem
-                    return  <div className="feature__item" ref={myCarouselItem} onMouseEnter={()=>{setIsMove(false)}} onMouseLeave={()=>{setIsMove(true)}}>
-                              <img src={poster} alt="poster" />
+                    const {id, age, image, cast, countries, genres, imdbID, imdbRating, imdbVoteCount, overview, poster, streamingInfo, streamingLink, title, year } = dataItem
+                    return  <div className="feature__item" ref={myCarouselItem} onClick={()=>{handleDetailModel(id)}} onMouseEnter={()=>{setIsMove(false)}} onMouseLeave={()=>{setIsMove(true)}}>
+                                <Link to="/details">
+                                  <img src={poster} alt="poster" />
+                                </Link>
                             </div>
 
             })}
@@ -128,10 +129,12 @@ const FeatureCarousel = () => {
               navigation={true}
             >
             {fakeData.map(dataItem=> {
-                const { age, image, cast, countries, generes, imdbID, imdbRating, imdbVoteCount, overview, poster, streamingInfo, streamingLink, title, year } = dataItem
+                const { id, age, image, cast, countries, generes, imdbID, imdbRating, imdbVoteCount, overview, poster, streamingInfo, streamingLink, title, year } = dataItem
                 return  <SwiperSlide>
-                            <div className="feature__item">
-                                <img src={poster} alt="poster" />
+                            <div className="feature__item" onClick={()=>{handleDetailModel(id)}}>
+                                <Link to="/details">
+                                    <img src={poster} alt="poster" />
+                                </Link>
                             </div>
                         </SwiperSlide>
             })}
