@@ -1,10 +1,11 @@
-import React,{useEffect,useState,useContext} from 'react'
+import React,{useState,useContext} from 'react'
 import {DataContext} from '../api/context'
 import { Link } from 'react-router-dom'
 
 const Nav = () => {
     const [searchItems,setSearchItems] = useState([])
     const {data, handleSearch, handleDetailModel} = useContext(DataContext)
+   
     const inputControl = (e) =>{
     e.stopPropagation()
     const icon = document.querySelector('.nav__search i')
@@ -15,6 +16,7 @@ const Nav = () => {
         icon.style.color = 'grey'
     })
     }
+
     const handleMenu = (e) =>{
     e.stopPropagation()
     const menu = document.querySelector('.nav__dropdown-menu')
@@ -29,6 +31,7 @@ const Nav = () => {
         menu.style.boxShadow = '0px 50px 50px rgb(15, 15, 15) inset'
     }
     }
+
     const handleMenuClose = (e) =>{
     e.stopPropagation()
     const menu = document.querySelector('.nav__dropdown-menu')
@@ -37,6 +40,8 @@ const Nav = () => {
     menu.style.transform = 'rotateY(90deg)'
     menu.style.boxShadow = '0px 50px 50px rgb(15, 15, 15) inset'
     }
+
+    
 
     return (
         <div className="nav">
@@ -51,7 +56,13 @@ const Nav = () => {
                 <i className="fa fa-search"></i>
                 <ul className="nav__search-results">
                     {searchItems.map(item=>{
-                        return    <Link to="/details"><li onClick={()=>{handleDetailModel(item.id)}}className="nav__search-results-item" key={item.id}>{item.title}</li></Link>
+                        return    <Link to="/details" key={item.id}>
+                        <li onClick={()=>{
+                            handleDetailModel(item.id)
+                            setSearchItems([])
+                        }}
+                        className="nav__search-results-item" key={item.id}>{item.title}
+                        </li></Link>
                     })}
                 </ul>
             </div>

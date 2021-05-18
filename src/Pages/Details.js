@@ -1,11 +1,11 @@
-import React,{useState,useEffect,useContext,useRef} from 'react'
+import React,{useState,useEffect,useContext} from 'react'
 import Nav  from '../Components/Nav'
 import { DataContext } from '../api/context'
-import { Link } from 'react-router-dom'
 const Details = () => {
     const { detailModel,data, setDetailModel} = useContext(DataContext)
+    const [categories,setCategories] = useState([])
     if(detailModel !== null){
-        var {id, age, image, cast, countries, genres, imdbID, imdbRating, imdbVoteCount, overview, poster, streamingInfo, streamingLink, title, year } = detailModel
+        var {age, cast, genres, imdbID, imdbRating, imdbVoteCount, overview, poster, streamingLink, title, year } = detailModel
     }
     useEffect(()=>{
         if(detailModel === null){
@@ -18,8 +18,19 @@ const Details = () => {
             }
         }else{
             localStorage.setItem('movie',JSON.stringify(detailModel))
+        } 
+        if(data.length > 0 && categories.length === 0){
+            let tempCategories = [...categories]
+            data.forEach(item=>{
+                item.genres.forEach(genre =>{
+                    if(!tempCategories.includes(genre)){
+                        tempCategories.push(genre)
+                    }
+                })
+            })
+            setCategories(tempCategories)
         }
-    },[detailModel,data])
+    },[detailModel,data,categories])
     return (
         <div className="details">
             <Nav />
@@ -55,6 +66,11 @@ const Details = () => {
                 </div>
             </div>
             : null }
+            <div className="details__c-nav">
+                <ul className="details__c-nav-list">
+                   
+                </ul>
+            </div>
         </div>
     )
 }

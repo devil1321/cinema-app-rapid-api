@@ -1,6 +1,5 @@
 import React,{ createContext, useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import axios from 'axios'
 import Movies from './movies.json'
 import Genres from './generes.json'
 export const DataContext = createContext({
@@ -53,23 +52,23 @@ export const DataProvider = ({children}) => {
     },[])
     const handleControls = (next,prev,current,move,carousel,carouselItem,margin) =>{
         var items = document.querySelectorAll(`.${carouselItem}`)
-        var carousel = document.querySelector(`.${carousel}`)
+        var carouselDOM = document.querySelector(`.${carousel}`)
         var width = items[0].clientWidth + margin
         var max = items.length
         var startMove = 0
-        carousel.style.transition = "all 1s ease-in-out"
+        carouselDOM.style.transition = "all 1s ease-in-out"
         if(current < max && prev === null){
-            carousel.style.transform = `translateX(-${move}px)`
+            carouselDOM.style.transform = `translateX(-${move}px)`
         }else if(current >= -2 && next === null){
             if(move === -width){
                 move = move * (-1)
-                carousel.style.transform = `translateX(${move}px)`                
+                carouselDOM.style.transform = `translateX(${move}px)`                
             }else{
                 move = move * (-1)
-                carousel.style.transform = `translateX(${move}px)`
+                carouselDOM.style.transform = `translateX(${move}px)`
             }
         }else if(current === max || current === -2){
-            carousel.style.transform = `translateX(${startMove}px)`
+            carouselDOM.style.transform = `translateX(${startMove}px)`
         }
     }
     const setDataModel = (initData,fetchMovies,fetchGenres) =>{
@@ -113,7 +112,6 @@ export const DataProvider = ({children}) => {
         searchText = searchText.replaceAll(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&")
         searchText = searchText.replaceAll("#","")
         const regex = new RegExp(`^${searchText}`,'gi')
-    
         return item.title.replaceAll("#","").match(regex)
     })
     console.log(matches)

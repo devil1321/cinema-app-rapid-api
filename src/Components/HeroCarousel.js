@@ -30,13 +30,13 @@ const HeroCarousel = () => {
             handleControls(null,prev,current,move,carousel,carouselItem,30)
         }
     }
-    },[move,movedNext,data])
+    },[move,movedNext,data,current])
     return (
         <div className="hero__carousel-wrapper" >
             <div className="hero__carousel" ref={myCarousel}>
             {data.map(dataItem=>{
-            const {id, age, image, cast, countries, genres, imdbID, imdbRating, imdbVoteCount, overview, poster, streamingInfo, streamingLink, title, year } = dataItem
-                return  <div className="hero__carousel-item" ref={myCarouselItem}>
+            const {id, age, image, countries,streamingInfo, title} = dataItem
+                return  <div className="hero__carousel-item" key={id} ref={myCarouselItem}>
                             <Link to="/details">
                                 <div onClick={()=>{handleDetailModel(id)}}>
                                     <img className="hero__carousel-overlay" src="/assets/home/overlay.png" alt="" />

@@ -9,7 +9,6 @@ import "swiper/components/pagination/pagination.min.css"
 SwiperCore.use([Pagination,Navigation]);
 
 const FeatureCarousel = () => {
-    const [current,setCurrent] = useState(0)
     const [move,setMove] = useState(0)
     const [moveBy,setMoveBy]= useState(0)
     const [movedNext,setMovedNext] = useState(null)
@@ -17,7 +16,7 @@ const FeatureCarousel = () => {
     const [fakeData,setFakeData] = useState([])
     const [isSet,setIsSet] = useState(false)
     const [way,setWay] = useState(false)
-    const { handleControls,handleDetailModel, data } = useContext(DataContext)
+    const {handleDetailModel, data } = useContext(DataContext)
 
     const myCarousel = useRef()
     const myCarouselItem = useRef()
@@ -29,7 +28,7 @@ const FeatureCarousel = () => {
         let carouselWrapper = document.querySelector('.feature__carousel')
         if(isMove){
         carouselWrapper.style.transition = "all 100ms linear"
-        var play = setInterval(()=>{
+        setInterval(()=>{
             carouselWrapper.style.transform = `translateX(${newMove}%)`
                 if(newMove > 4){
                     setWay(false)
@@ -51,8 +50,6 @@ const FeatureCarousel = () => {
         }
     }
     useEffect(()=>{
-        let prev = prevRef.current.classList.value
-        let next = nextRef.current.classList.value
         if(data.length !== 0){
             if(!isSet){
                 let tempData = []
@@ -64,8 +61,8 @@ const FeatureCarousel = () => {
         }      
         if(isSet){    
             let carousel = document.querySelector('.feature__carousel')
-            carousel.style.transition = "all 1s linear"
-            if(movedNext == true && !isMove){
+            carousel.style.transition = "all 1s ease-in-out"
+            if(movedNext === true && !isMove){
                 if(moveBy < -155){
                     setMoveBy(4)
                     setWay(false)
@@ -74,7 +71,7 @@ const FeatureCarousel = () => {
                 carousel.style.transform = `translateX(${moveBy}%)`
                 setMove(moveBy)
 
-            }else if(movedNext == false & !isMove){        
+            }else if(movedNext === false & !isMove){        
                 if(moveBy > 4){
                     setMoveBy(-155)
                     setWay(true)
@@ -85,7 +82,9 @@ const FeatureCarousel = () => {
             }
         }
         handlePlay(move,isMove)
-
+        return function cleanUp(){
+            setMove(0)
+        }
     },[fakeData,isSet,data,isMove,way,movedNext,moveBy])
 
     return (
@@ -110,9 +109,9 @@ const FeatureCarousel = () => {
                 <i className="fa fa-chevron-right"></i></div>
             </div>
             <div className="feature__carousel" ref={myCarousel}>
-                {fakeData.map(dataItem=> {
-                    const {id, age, image, cast, countries, genres, imdbID, imdbRating, imdbVoteCount, overview, poster, streamingInfo, streamingLink, title, year } = dataItem
-                    return  <div className="feature__item" ref={myCarouselItem} onClick={()=>{handleDetailModel(id)}} onMouseEnter={()=>{setIsMove(false)}} onMouseLeave={()=>{setIsMove(true)}}>
+                {fakeData.map((dataItem,index) => {
+                    const {id, poster } = dataItem
+                    return  <div className="feature__item" key={index} ref={myCarouselItem} onClick={()=>{handleDetailModel(id)}} onMouseEnter={()=>{setIsMove(false)}} onMouseLeave={()=>{setIsMove(true)}}>
                                 <Link to="/details">
                                   <img src={poster} alt="poster" />
                                 </Link>
@@ -128,9 +127,9 @@ const FeatureCarousel = () => {
               pagination={{ "clickable": true }} 
               navigation={true}
             >
-            {fakeData.map(dataItem=> {
-                const { id, age, image, cast, countries, generes, imdbID, imdbRating, imdbVoteCount, overview, poster, streamingInfo, streamingLink, title, year } = dataItem
-                return  <SwiperSlide>
+            {fakeData.map((dataItem,index)=> {
+                const { id, poster } = dataItem
+                return  <SwiperSlide key={index}>
                             <div className="feature__item" onClick={()=>{handleDetailModel(id)}}>
                                 <Link to="/details">
                                     <img src={poster} alt="poster" />
