@@ -1,11 +1,11 @@
 import React,{useEffect,useRef,useContext,useState} from 'react'
 import { DataContext } from '../api/context'
-
+import { Link } from 'react-router-dom'
 const HeroCarousel = () => {
     const [current,setCurrent] = useState(0)
     const [move,setMove] = useState(0)
     const [movedNext,setMovedNext] = useState(false)
-    const {handleControls,data} = useContext(DataContext)
+    const {handleControls,handleDetailModel,data} = useContext(DataContext)
     const myCarousel = useRef()
     const myCarouselItem = useRef()
     const nextRef = useRef()
@@ -35,10 +35,14 @@ const HeroCarousel = () => {
         <div className="hero__carousel-wrapper" >
             <div className="hero__carousel" ref={myCarousel}>
             {data.map(dataItem=>{
-            const { age, image, cast, countries, genres, imdbID, imdbRating, imdbVoteCount, overview, poster, streamingInfo, streamingLink, title, year } = dataItem
+            const {id, age, image, cast, countries, genres, imdbID, imdbRating, imdbVoteCount, overview, poster, streamingInfo, streamingLink, title, year } = dataItem
                 return  <div className="hero__carousel-item" ref={myCarouselItem}>
-                            <img className="hero__carousel-overlay" src="/assets/home/overlay.png" alt="" />
-                            <img className="hero__carousel-slide" src={image} alt="" />
+                            <Link to="/details">
+                                <div onClick={()=>{handleDetailModel(id)}}>
+                                    <img className="hero__carousel-overlay" src="/assets/home/overlay.png" alt="" />
+                                    <img className="hero__carousel-slide" src={image} alt="" />
+                                </div>
+                            </Link>
                             <div className="hero__carousel-item-text">
                                 <h2 className="title">{title.replaceAll("#","").toUpperCase()}</h2>
                                 <h3 className="country"><span>Country :</span> {countries.map(country => country + ' ')}</h3>
