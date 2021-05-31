@@ -29,7 +29,6 @@ const FeatureCarousel = () => {
         if(isMove){
         carouselWrapper.style.transition = "all 100ms linear"
         setInterval(()=>{
-            carouselWrapper.style.transform = `translateX(${newMove}%)`
                 if(newMove > 4){
                     setWay(false)
                 } else if(newMove < -155){
@@ -44,6 +43,7 @@ const FeatureCarousel = () => {
                     setMove(newMove)
 
                 }
+                carouselWrapper.style.transform = `translateX(${newMove}%)`
             })    
         }else{
             for (var i = 1; i < 999999; i++){ window.clearInterval(i)}

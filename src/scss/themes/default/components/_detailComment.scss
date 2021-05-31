@@ -1,0 +1,36 @@
+
+.detail{
+    &__comment{
+        width: 48%;
+        @include createFlex(row,center,flex-start,null);
+    }
+    &__comment-image{
+        position: relative;
+        right:20px;
+        top:0px;
+        min-width: 100px;
+        max-width: 100px;
+        min-height: 100px;
+        max-height: 100px;
+        overflow: hidden;
+        border-radius:50px;
+        img{
+            width: 100%;
+        }
+    }
+    &__comment-text{
+        line-height: 1.5;
+    }
+    &__comment-header{
+        @include createFlex(row,space-between,center,null);
+    }
+    &__comment-rating{
+        i{
+            margin:0px 5px;
+            color:yellow;
+        }
+        i:last-of-type{
+            color:gray;
+        }
+    }
+}

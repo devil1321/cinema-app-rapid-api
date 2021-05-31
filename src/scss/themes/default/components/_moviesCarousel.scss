@@ -1,0 +1,44 @@
+.movies{
+    &__carousel-wrapper{
+        margin-top: 70px;
+        width: 100vw;
+        overflow-x: hidden;
+    }
+    &__carousel{
+        margin-bottom: 50px;
+        @include createFlex(row,flex-start,center,null);
+        transform: translateX(0px);
+        transition: all 1s ease-in-out;
+        &-swiper{
+            .feature__item{
+                cursor:grab;
+            }
+        }
+    }
+    &__controls{
+        margin-left: auto;
+        margin-right: 75px;
+        @include createFlex(row,space-between,center,null);
+        width:100px;
+        div{
+            padding:30px;
+            transition: all 500ms ease-in-out;
+            &:hover{
+                box-shadow: 0px 0px 50px rgb(44, 44, 44) inset;
+            }
+        }
+        i{
+            cursor: pointer;
+            font-size: pxToRem(20);
+            color:$tabs-color;
+        }
+    }
+    &__item{
+        cursor: pointer;;
+        min-width:calc(120% / 4 - 15px);
+        margin-right:25px;
+        img{
+            width: 100%;
+        }
+    }
+}

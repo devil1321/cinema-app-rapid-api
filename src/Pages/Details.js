@@ -1,6 +1,8 @@
 import React,{useState,useEffect,useContext} from 'react'
 import { Link } from 'react-router-dom'
 import Nav  from '../Components/Nav'
+import DetailComment from '../Components/DetailComment'
+import MoviesCarousel from '../Components/MoviesCarousel'
 import { DataContext } from '../api/context'
 const Details = () => {
     const { detailModel,data, setDetailModel,handleDetailModel} = useContext(DataContext)
@@ -125,6 +127,17 @@ const Details = () => {
                          
                 })}
             </div>
+            <div className="details__comments">
+                <h2 className="details__comments-title">Comments</h2>
+                <div className="details__comments-group">
+                    <DetailComment image="/assets/profile-1.jpeg" date="20/12/2012" title={'John Doe'} text={'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum dapibus leo magna, sit amet pretium nisi blandit ac. Suspendisse tincidunt lobortis massa in sodales. Maecenas ultricies sapien quis nunc dapibus fringilla. Integer eleifend urna odio, eu accumsan urna consequat a. Fusce eget nisl vestibulum, sagittis nibh quis, pretium ligula. Donec ac dignissim purus. Mauris eu quam non velit condimentum porttitor id at ex.'}/> 
+                    <DetailComment image="/assets/profile-2.jpg" date="12/10/2013" title={'Jessica May'} text={'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum dapibus leo magna, sit amet pretium nisi blandit ac. Suspendisse tincidunt lobortis massa in sodales. Maecenas ultricies sapien quis nunc dapibus fringilla. Integer eleifend urna odio, eu accumsan urna consequat a. Fusce eget nisl vestibulum, sagittis nibh quis, pretium ligula. Donec ac dignissim purus. Mauris eu quam non velit condimentum porttitor id at ex.'}/> 
+                </div>
+            </div>
+            <div className="details__movies">
+                <MoviesCarousel />
+            </div>
+            <div className="details__shortcuts"></div>
         </div>
     )
 }

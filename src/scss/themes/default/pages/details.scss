@@ -1,6 +1,6 @@
 .details{
     color:white;
-  
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     &__content{
         padding: 0px 80px 50px;
         @include createFlex(row,space-between,center,wrap);
@@ -188,6 +188,25 @@
                 h3{font-weight: 500;}
                 width: 100%;
                 @include createFlex(row,space-between,center,null);
+            }
+        }
+    }
+    &__comments{
+        padding: 50px 80px 50px;
+        &-title{
+            font-size: pxToRem(30);
+        }
+        &-group{
+            @include createFlex(row,space-between,center,wrap);
+        }
+        .detail__comment:last-of-type{
+           .detail__comment-image{
+                img{
+                    width: 150%;
+                    position: relative;
+                    left:-20px;
+                    top:0px;
+                }
             }
         }
     }
