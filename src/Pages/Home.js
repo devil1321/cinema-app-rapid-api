@@ -2,6 +2,7 @@ import React,{useContext} from 'react'
 import Nav from '../Components/Nav'
 import HeroCarousel from '../Components/HeroCarousel'
 import FeatureCarousel from '../Components/FeatureCarousel'
+import Footer from '../Components/Footer'
 import {DataContext} from '../api/context'
 const Home = () => {
     const {data} = useContext(DataContext)
@@ -9,7 +10,8 @@ const Home = () => {
         <div className="home">
             <Nav />
             <HeroCarousel />
-            <FeatureCarousel dataProp={data}/>
+            <FeatureCarousel />
+            <Footer/>
         </div>
     )
 }

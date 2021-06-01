@@ -83,6 +83,7 @@
         }
     }
     &__menu{
+        width: 300px;
         position: relative;
         top:0px;
         left:0px;
@@ -102,7 +103,19 @@
     
         &-user{
             @include createFlex(row,space-between,center,null);
+       
         }
+        &-profile{
+            width: 50px;
+            height:50px;
+            border-radius: 50px;
+            overflow:hidden;
+            img{
+                width: 100%;
+            }
+        }
+        
+  
     }
     &__dropdown{
         &-menu{

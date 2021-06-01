@@ -69,8 +69,10 @@ const Nav = () => {
             <div className="nav__menu">
                 <i className="fa fa-plus"></i>
                 <i className="fa fa-bell"></i>
+                <div className="nav__menu-profile">
+                    <img src="/assets/profile.png" alt="profile-pic" />
+                </div>
                 <div className="nav__menu-user">
-                    <img src="" alt="" className="nav__profile-img" />
                     <p>Peter Jacksons</p>
                 </div>
                 <i className="fa fa-caret-down nav__dropdown" onClick={(e)=>handleMenu(e)}></i>
