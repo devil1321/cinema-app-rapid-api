@@ -67,7 +67,9 @@ const Nav = () => {
                 </ul>
             </div>
             <div className="nav__menu">
-                <i className="fa fa-plus"></i>
+                <Link to="/add-movie">
+                    <i className="fa fa-plus"></i>
+                </Link>
                 <i className="fa fa-bell"></i>
                 <div className="nav__menu-profile">
                     <img src="/assets/profile.png" alt="profile-pic" />

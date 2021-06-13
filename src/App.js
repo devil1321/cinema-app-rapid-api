@@ -4,7 +4,7 @@ import {Switch,Route} from 'react-router-dom'
 import Home from './Pages/Home'
 import Details from './Pages/Details'
 import { DataProvider } from './api/context'
-import Contact from './Pages/Contact'
+import AddMovie from './Pages/AddMovie'
 function App() {
   return (
     <DataProvider>
@@ -12,7 +12,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={Home}/>
         <Route exact path="/details" component={Details}/>
-        <Route exact path="/contact" component={Contact}/>
+        <Route exact path="/add-movie" component={AddMovie}/>
       </Switch>
     </div>
     </DataProvider>

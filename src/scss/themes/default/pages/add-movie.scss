@@ -1,0 +1,83 @@
+.add-movie{
+    position: relative;
+    top:0px;
+    left:0px;
+    box-shadow: 0px 40px 200px inset rgb(19, 19, 19);
+    &__hero-image{
+        overflow: hidden;
+        height: 400px;
+        width: 100%;
+        img{
+            position: relative;
+            top:-250px;
+            left:0px;
+            width: 100%;
+        }
+    }    
+    &__hero-text{
+        position: absolute;
+        top:130px;
+        left:50%;
+        transform:translateX(-50%);
+        color:white;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size:pxToRem(30);
+        h1,p{
+            width: 150%;
+        }
+        
+        p{
+            margin-top: -40px;
+            color:red;
+            text-decoration: underline;
+        }
+    }
+    &__form{
+        position: relative;
+        top:30px;
+        left:0px;
+        padding:30px;
+        width: 60%;
+        margin: 0px auto;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        color:white;
+        background-color: $card-background;
+        box-shadow: 0px 20px 70px inset black,0px 1px 2px inset red;
+        input,textarea{
+            display: block;
+            width: 100%;
+            margin:10px 0px;
+        }
+        input,textarea{
+            padding:10px;
+            background-color: rgba(0, 0, 0, 0.241);
+            border:0px;
+            box-shadow: 0px 0px 2px inset red;
+            border-radius: 5px;
+            color:white;
+            &:focus{
+                outline: none;
+                box-shadow: 0px 0px 4px inset $tabs-color;
+            }
+        }
+        button{
+            cursor: pointer;
+            padding:10px 20px;
+            display: block;
+            margin-left: auto;
+            background-color: $tabs-color;
+            box-shadow: 0px 0px 2px inset;
+            border:0px;
+            outline:none;
+            &:hover{
+                box-shadow:0px 0px 10px red;
+                color:white;
+                opacity: 0.9;
+            }
+            &:focus{
+               outline:none;
+               border:0px;
+            }
+        }
+    }
+}
