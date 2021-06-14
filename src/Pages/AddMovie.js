@@ -2,20 +2,24 @@ import React,{useEffect,useState} from 'react'
 import Nav from '../Components/Nav'
 import Footer from '../Components/Footer'
 import { v4 as uuidv4 } from 'uuid';
-
+import axios from 'axios'
 const AddMovie = () => {
     const [formData,setFormData] = useState({
         id:uuidv4(),
         title:null,
         age:null,
         cast:null,
-        genre:null,
+        genres:null,
+        countries:null,
         imdbID:null,
         imdbRating:null,
         imdbVoteCount:null,
         overview:null,
         posterURLs:{
-            orginal:null
+            original:null
+        },
+        backdropURLs:{
+            original:null
         },
         significants:null,
         streamingInfo:null,
@@ -33,13 +37,23 @@ const AddMovie = () => {
         }
     }
 
-    const handleGenre = () => {
+    const handleGenres = () => {
         const form = document.querySelector('form')
-        if(form.genre.value !== ""){
-            const tempGenre = form.genre.value.split(',')
+        if(form.genres.value !== ""){
+            const tempGenre = form.genres.value.split(',')
             setFormData(prevState =>({
                 ...prevState,
-                genre:tempGenre
+                genres:tempGenre
+            }))
+        }
+    }
+    const handleCountries = () => {
+        const form = document.querySelector('form')
+        if(form.countries.value !== ""){
+            const tempCountries = form.countries.value.split(',')
+            setFormData(prevState =>({
+                ...prevState,
+                countries:tempCountries
             }))
         }
     }
@@ -59,13 +73,26 @@ const AddMovie = () => {
     const handlePosterURLs = () =>{
         const form = document.querySelector('form')
         const tempPosterURLs = {
-            orginal:null
+            original:null
         }
         if(form.posterURLs.value !== ""){
-            tempPosterURLs.orginal = form.posterURLs.value
+            tempPosterURLs.original = form.posterURLs.value
             setFormData(prevState =>({
                 ...prevState,
                 posterURLs:tempPosterURLs
+            }))
+        }
+    }
+    const handleBackdropURLs = () =>{
+        const form = document.querySelector('form')
+        const tempBackdropURLs = {
+            original:null
+        }
+        if(form.backdropURLs.value !== ""){
+            tempBackdropURLs.original = form.backdropURLs.value
+            setFormData(prevState =>({
+                ...prevState,
+                backdropURLs:tempBackdropURLs
             }))
         }
     }
@@ -98,18 +125,25 @@ const AddMovie = () => {
 
     const handleSubmit = (e) =>{
         e.preventDefault()
+        axios.post('http://localhost:3000/results',formData)
+            .then(res => console.log(res))
+            .catch(err => console.log(err))
+
         const resetForm = {
             id:uuidv4(),
             title:null,
             age:null,
             cast:null,
-            genre:null,
+            genres:null,
             imdbID:null,
             imdbRating:null,
             imdbVoteCount:null,
             overview:null,
             posterURLs:{
-                orginal:null
+                original:null
+            },
+            backdropURLs:{
+                original:null
             },
             significants:null,
             streamingInfo:null,
@@ -117,12 +151,12 @@ const AddMovie = () => {
         }
         let inputs = document.querySelectorAll('input')
         let textArea = document.querySelector('textarea')
-        console.log(textArea)
         inputs.forEach(input =>{
             input.value = ''
         })
         textArea.value = ''
         setFormData(resetForm)
+        window.location.href = '/'
     }
 
    
@@ -145,7 +179,7 @@ const AddMovie = () => {
                 </div>
             </div>
             <div className="add-movie__form">
-                <form action="" onClick={(e)=>{handleSubmit(e)}}>
+                <form action="" onSubmit={(e)=>{handleSubmit(e)}}>
                     <div className="add-movie__form-control">
                         <label htmlFor="">Title</label>
                         <input type="text" name="title" onChange={(e)=>{handleChange(e)}} placeholder = "Write Title" />
@@ -158,14 +192,21 @@ const AddMovie = () => {
                         <label htmlFor="">Cast</label>
                         <div className="add-movie__multiple-value">
                             <input type="text" name="cast" placeholder="Write Cast example : 'Kia','Vin Diesel'"/>
-                            <button onClick={()=>{handleCast()}}>Add Cast</button>
+                            <div className="btn" onClick={()=>{handleCast()}}>Add Cast</div>
                         </div>
                     </div>
                     <div className="add-movie__form-control">
-                        <label htmlFor="">Genre</label>
+                        <label htmlFor="">Genres</label>
                         <div className="add-movie__multiple-value">
-                            <input type="text" name="genre" placeholder="Add Genre example: 'Action','Drama'"/>
-                            <button onClick={()=>{handleGenre()}}>Add Genre</button>
+                            <input type="text" name="genres" placeholder="Add Genre example: 'Drama ,History, Thriller ,Comedy ,Fantasy ,Sport, Crime ,Horror ,Mystery '"/>
+                            <div className="btn" onClick={()=>{handleGenres()}}>Add Genre</div>
+                        </div>
+                    </div>
+                    <div className="add-movie__form-control">
+                        <label htmlFor="">Countries</label>
+                        <div className="add-movie__multiple-value">
+                            <input type="text" name="countries" placeholder="Add Genre example: 'US','EN'"/>
+                            <div className="btn" onClick={()=>{handleCountries()}}>Add Countries</div>
                         </div>
                     </div>
                     <div className="add-movie__form-control">
@@ -189,10 +230,14 @@ const AddMovie = () => {
                         <input type="text" name="posterURLs" placeholder="Add Url example: https://url.com/poster" onChange={()=>handlePosterURLs()}/>
                     </div>
                     <div className="add-movie__form-control">
+                        <label htmlFor="">BackdropURLs</label>
+                        <input type="text" name="backdropURLs" placeholder="Add Url example: https://url.com/backdrop" onChange={()=>handleBackdropURLs()}/>
+                    </div>
+                    <div className="add-movie__form-control">
                         <label htmlFor="">Significants</label>
                         <div className="add-movie__multiple-value">
                             <input type="text" name="significants" placeholder="Add significants example: John McGreedy, Joanna Poniewoźnik" />
-                            <button onClick={()=>{handleSignificants()}}>Add Significant</button>
+                            <div className="btn" onClick={()=>{handleSignificants()}}>Add Significant</div>
                         </div>
                     </div>
                     <div className="add-movie__form-control">
@@ -201,7 +246,7 @@ const AddMovie = () => {
                         <input type="text" name="streamingPlatform" placeholder="Add platform example: netflix"/>
                         <label htmlFor="">Streaming Link</label>
                         <input type="text" name="streamingLink" placeholder="Add Streaming Link example: https://netflix.com/john-wick-4" />
-                        <button onClick={(e)=>{handleStreamingInfo(e)}}>Add Streaming</button>
+                        <div className="btn" onClick={(e)=>{handleStreamingInfo(e)}}>Add Streaming</div>
                     </div>
                     <div className="add-movie__form-control">
                         <label htmlFor="">Year</label>
