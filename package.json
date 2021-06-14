@@ -24,7 +24,7 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "set PORT=4000 && react-scripts start",
+    "start": "set PORT=4000 && react-scripts start && json-server -p 3000 -w ./src/api/movies.json",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
