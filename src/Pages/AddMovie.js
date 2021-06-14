@@ -123,64 +123,64 @@ const AddMovie = () => {
                 <form action="" onClick={(e)=>{handleSubmit(e)}}>
                     <div className="add-movie__form-control">
                         <label htmlFor="">Title</label>
-                        <input type="text" name="title" onChange={(e)=>{handleChange(e)}} />
+                        <input type="text" name="title" onChange={(e)=>{handleChange(e)}} placeholder = "Write Title" />
                     </div>
                     <div className="add-movie__form-control">
                         <label htmlFor="">Age</label>
-                        <input type="text" name="age" onChange={(e)=>{handleChange(e)}} />
+                        <input type="text" name="age" onChange={(e)=>{handleChange(e)}} placeholder="Write Age" />
                     </div>
                     <div className="add-movie__form-control">
                         <label htmlFor="">Cast</label>
                         <div className="add-movie__multiple-value">
-                            <input type="text" name="cast" />
+                            <input type="text" name="cast" placeholder="Write Cast example : 'Kia','Vin Diesel'"/>
                             <button onClick={()=>{handleCast()}}>Add Cast</button>
                         </div>
                     </div>
                     <div className="add-movie__form-control">
                         <label htmlFor="">Genre</label>
                         <div className="add-movie__multiple-value">
-                            <input type="text" name="genre" />
+                            <input type="text" name="genre" placeholder="Add Genre example: 'Action','Drama'"/>
                             <button onClick={()=>{handleGenre()}}>Add Genre</button>
                         </div>
                     </div>
                     <div className="add-movie__form-control">
                         <label htmlFor="">ImdbID</label>
-                        <input type="text" name="imdbID" onChange={(e)=>{handleChange(e)}}/>
+                        <input type="text" name="imdbID" placeholder="Add ImdbID" onChange={(e)=>{handleChange(e)}}/>
                     </div>
                     <div className="add-movie__form-control">
                         <label htmlFor="">ImdbRating</label>
-                        <input type="text" name="imdbRating" onChange={(e)=>{handleChange(e)}}/>
+                        <input type="text" name="imdbRating" placehoder="Add Imdb Rating" onChange={(e)=>{handleChange(e)}}/>
                     </div>
                     <div className="add-movie__form-control">
                         <label htmlFor="">imdbVoteCount</label>
-                        <input type="text" name="imdbVoteCount" onChange={(e)=>{handleChange(e)}}/>
+                        <input type="text" name="imdbVoteCount" placeholder="Add ImdbVoteCount" onChange={(e)=>{handleChange(e)}}/>
                     </div>
                     <div className="add-movie__form-control">
                         <label htmlFor="">Overview</label>
-                        <textarea name="" id="" cols="30" rows="10" name="overview" onChange={(e)=>{handleChange(e)}}></textarea>
+                        <textarea name="" id="" cols="30" rows="10" name="overview" placeholder="Add Overview" onChange={(e)=>{handleChange(e)}}></textarea>
                     </div>
                     <div className="add-movie__form-control">
                         <label htmlFor="">PosterURLs</label>
-                        <input type="text" name="posterURLs" onChange={()=>handlePosterURLs()}/>
+                        <input type="text" name="posterURLs" placeholder="Add Url example: https://url.com/poster" onChange={()=>handlePosterURLs()}/>
                     </div>
                     <div className="add-movie__form-control">
                         <label htmlFor="">Significants</label>
                         <div className="add-movie__multiple-value">
-                            <input type="text" name="significants" />
+                            <input type="text" name="significants" placeholder="Add significants example: John McGreedy, Joanna Poniewoźnik" />
                             <button onClick={()=>{handleSignificants()}}>Add Significant</button>
                         </div>
                     </div>
                     <div className="add-movie__form-control">
                         <label htmlFor="">Streaming Info</label>
                         <label htmlFor="">Streaming Platform</label>
-                        <input type="text" name="streamingPlatform"/>
+                        <input type="text" name="streamingPlatform" placeholder="Add platform example: netflix"/>
                         <label htmlFor="">Streaming Link</label>
-                        <input type="text" name="streamingLink" />
+                        <input type="text" name="streamingLink" placeholder="Add Streaming Link example: https://netflix.com/john-wick-4" />
                         <button onClick={(e)=>{handleStreamingInfo(e)}}>Add Streaming</button>
                     </div>
                     <div className="add-movie__form-control">
                         <label htmlFor="">Year</label>
-                        <input type="text" name="year" onChange={(e)=>{handleChange(e)}}/>
+                        <input type="text" name="year" placeholder="Add year" onChange={(e)=>{handleChange(e)}}/>
                     </div>
                     <button type="submit">Add Your Favoruite Movie</button>
                 </form>
