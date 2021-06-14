@@ -1,9 +1,11 @@
 import React,{useEffect,useState} from 'react'
 import Nav from '../Components/Nav'
 import Footer from '../Components/Footer'
+import { v4 as uuidv4 } from 'uuid';
+
 const AddMovie = () => {
     const [formData,setFormData] = useState({
-        id:null,
+        id:uuidv4(),
         title:null,
         age:null,
         cast:null,
@@ -19,8 +21,6 @@ const AddMovie = () => {
         streamingInfo:null,
         year:null
     })
-
-
 
     const handleCast = () => {
         const form = document.querySelector('form')
@@ -99,7 +99,7 @@ const AddMovie = () => {
     const handleSubmit = (e) =>{
         e.preventDefault()
         const resetForm = {
-            id:null,
+            id:uuidv4(),
             title:null,
             age:null,
             cast:null,
@@ -122,14 +122,14 @@ const AddMovie = () => {
             input.value = ''
         })
         textArea.value = ''
-        console.log('data',formData)
         setFormData(resetForm)
     }
 
    
 
     useEffect(()=>{
-        console.log(formData)
+       
+        
     },[formData])
 
     return (
