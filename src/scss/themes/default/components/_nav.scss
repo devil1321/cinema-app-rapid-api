@@ -11,8 +11,17 @@
     background-size: cover;
     box-shadow: 0px 5px 200px inset black;
     @include createFlex(row,space-between,center,null);
+    @include breakpoint-down(medium-sm){
+        padding:0px 20px;
+    }
     img{
         width: 80%;
+       
+    }
+    @include breakpoint-down(medium-sm){
+        &__logo{
+            display: none;
+        }
     }
     &__search{
         min-width: 200px;
@@ -25,6 +34,9 @@
         background: $card-background;
         border-radius: 25px;
         @include createFlex(row,space-between,center,null);
+        @include breakpoint-down(medium){
+            margin-left: 0px;
+        }
         input{
             background: transparent;
             color:#FFBB00;
@@ -88,6 +100,9 @@
         top:0px;
         left:0px;
         @include createFlex(row,space-between,center,null);
+        @include breakpoint-down(small){
+            @include createFlex(row,flex-end,center,null);
+        }
         p{
             min-width: 100%;
         }
@@ -100,16 +115,21 @@
                 color:$tabs-color;
             }
         }
-    
+       
         &-user{
             @include createFlex(row,space-between,center,null);
-       
+            @include breakpoint-down(small){
+                display: none;
+            }
         }
         &-profile{
             width: 50px;
             height:50px;
             border-radius: 50px;
             overflow:hidden;
+            @include breakpoint-down(small){
+                display: none;
+            }
             img{
                 width: 100%;
             }
@@ -136,6 +156,9 @@
             transform:rotateY(90deg);
             transition: all 500ms ease-in-out;
             box-shadow: 0px 70px 50px rgb(15, 15, 15) inset;
+            @include breakpoint-down(small){
+                left:30px;
+            }
             &-item{
                 cursor: pointer;
                 box-sizing: border-box;

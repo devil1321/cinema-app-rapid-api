@@ -45,7 +45,7 @@ const Nav = () => {
 
     return (
         <div className="nav">
-        <Link to="/">
+        <Link to="/" className="nav__logo">
             <img src="/assets/logo.png" alt=""/>
         </Link>
             <div className="nav__search" onClick={inputControl}>

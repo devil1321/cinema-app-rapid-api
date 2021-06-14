@@ -8,14 +8,27 @@
     &__content{
         padding: 0px 80px 50px;
         @include createFlex(row,space-between,center,wrap);
+        @include breakpoint-down(medium-sm){
+            padding: 0px 20px 50px;
+        }
+        @include breakpoint-down(small){
+            padding: 0px 10px 50px;
+        }
     }
     &__image-container{
         width: 40%;
+        @include breakpoint-down(medium){
+            width: 100%;
+        }
+
         img{
             padding-top: 50px;
             display: block;
             margin-left: auto;
             width: 70%;
+            @include breakpoint-down(medium){
+                margin: 0px auto;
+            }
         }
     }
     &__count{
@@ -30,6 +43,11 @@
         padding-left: 50px;
         width:55%;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
+        @include breakpoint-down(medium){
+            width: 100%;
+            padding-left: 0px;
+        }
+
         h1{
             color:$tabs-color;
         }
@@ -60,6 +78,9 @@
     }
     &__c-nav{
         padding:0px 80px;
+        @include breakpoint-down(small){
+            padding:0px 10px;
+        }
         &-list{
             padding:0px;
             margin:0px;
@@ -68,6 +89,9 @@
             @include createFlex(row,space-between,center,null);
             box-shadow: 0px 20px 70px inset black,0px 1px 2px inset red;
             height: 50px;
+            @include breakpoint-down(small){
+                @include createFlex(row,center,center,wrap);
+            }
             &-item{
                 cursor: pointer;
                 height: 90%;
@@ -76,6 +100,11 @@
                 font-family: Verdana, Geneva, Tahoma, sans-serif;
                 font-size: pxToRem(14);
                 transition: all 500ms ease-in-out;
+                @include breakpoint-down(small){
+                    min-width: 100%;
+                    border-left: 1px solid gray;
+                    margin: 8px 0px;
+                }
                 &:hover{
                     color:$tabs-color;
                     background-color: rgba(180, 180, 180, 0.158);
@@ -86,12 +115,16 @@
                     
                     border-right: 1px solid gray;
                 }
+                
             }
         }
     }
     &__result{
         padding: 50px 80px 0px 30px;
         @include createFlex(row,center,flex-start,wrap);
+        @include breakpoint-down(small){
+            margin-top:70%;
+        }
         &-item{
             cursor: pointer;
             overflow: hidden;
@@ -101,6 +134,9 @@
             width: 20%;
             margin: 10px 20px;
             opacity: 0;
+            @include breakpoint-down(small){
+                min-width: 110%;
+            }
             @keyframes comesOut {
                 0%{
                     top:0px;
@@ -196,6 +232,12 @@
     }
     &__comments{
         padding: 50px 80px 50px;
+        @include breakpoint-down(medium){
+            padding: 50px 50px 50px;
+        }
+        @include breakpoint-down(small){
+            padding:50px 10px 50px;
+        }
         &-title{
             font-size: pxToRem(30);
         }

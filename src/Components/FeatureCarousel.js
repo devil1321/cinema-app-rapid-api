@@ -81,7 +81,9 @@ const FeatureCarousel = () => {
         
             }
         }
-        handlePlay(move,isMove)
+        if(window.innerWidth > 1024){
+            handlePlay(move,isMove)
+        }
         return function cleanUp(){
             setMove(0)
         }
@@ -122,7 +124,7 @@ const FeatureCarousel = () => {
             <div className="feature__carousel-swiper">
             <Swiper
               spaceBetween={10}
-              slidesPerView={6}
+              slidesPerView={window.innerWidth > 1024 ? 6 : window.innerWidth > 540 ? 3 : 1}
               loop={true} 
               pagination={{ "clickable": true }} 
               navigation={true}

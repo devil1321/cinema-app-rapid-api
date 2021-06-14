@@ -16,8 +16,8 @@
             &:hover{
                 box-shadow: 0px 0px 100px rgba(255,255,255,0.3) inset;
                 i{
-                opacity: 0.8;
-                color:$tabs-color;
+                    opacity: 0.8;
+                    color:$tabs-color;
                 }
            }
         }
@@ -31,6 +31,14 @@
         height: 40%;
         transition: all 300ms ease-in-out;
         background-color: rgba(255,255,255,0.0);
+        @include breakpoint-down(small){
+            box-shadow: 0px 0px 100px rgba(255,255,255,0.2) inset;
+            padding:0px 10px;
+            i{
+                opacity: 0.8 !important;
+                color:white !important;
+            }
+        }
         i{
             position: relative;
             top:50%;
@@ -43,15 +51,21 @@
     }
     .next{
         right: 25px;
+        @include breakpoint-down(small){
+            right:0px;
+        }
     }
     .prev{
         left: 10px;
+        @include breakpoint-down(small){
+            left:0px;
+        }
     }
 }
 .hero__carousel{
     max-width: 100vw;
     @include createFlex(row,flex-start,center,null);
-      transition: all 1s ease-in-out;
+    transition: all 1s ease-in-out;
     &-item{
         &::-webkit-scrollbar{display:none;}
         overflow-x: auto;
@@ -63,6 +77,13 @@
         top:0px;
         left:0px;
         transform:translateX(calc(-90vw - 180px));
+        @include breakpoint-down(small){
+            min-width: 80%;
+            transform:translateX(calc(-90vw - 310px));
+        }
+        @include breakpoint-down-l(medium){
+            transform:translateX(calc(-90vw - 120px));
+        }
         &:hover{
             .hero__carousel-item-text{
                 bottom:0px;
@@ -84,6 +105,9 @@
         img{
             width: 60vw;
             transition: all 500ms ease-in-out;
+            @include breakpoint-down(small){
+                width: 100%;
+            }
         }
         &-text{
             box-sizing: border-box;

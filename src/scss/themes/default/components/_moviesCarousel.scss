@@ -9,6 +9,7 @@
         @include createFlex(row,flex-start,center,null);
         transform: translateX(0px);
         transition: all 1s ease-in-out;
+
         &-swiper{
             .feature__item{
                 cursor:grab;
@@ -37,6 +38,9 @@
         cursor: pointer;;
         min-width:calc(120% / 4 - 15px);
         margin-right:25px;
+        @include breakpoint-down(small){
+            min-width: 80%;
+        }
         img{
             width: 100%;
         }

@@ -12,6 +12,10 @@
             top:-250px;
             left:0px;
             width: 100%;
+            @include breakpoint-down(small){
+                width: 350%;
+                left:-300px;
+            }
         }
     }    
     &__hero-text{
@@ -22,17 +26,29 @@
         color:white;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
         font-size:pxToRem(30);
+        @include breakpoint-down(small){
+            font-size:pxToRem(20);
+            left:41%;
+        }
         h1,p{
             width: 150%;
         }
-        
+        h1{
+            @include breakpoint-down(small){
+                color:$tabs-color;
+            }
+        }
         p{
             margin-top: -40px;
             color:red;
             text-decoration: underline;
+            @include breakpoint-down(small){
+                margin-top: -20px;
+            }
         }
     }
     &__form{
+        
         position: relative;
         top:30px;
         left:0px;
@@ -43,12 +59,24 @@
         color:white;
         background-color: $card-background;
         box-shadow: 0px 20px 70px inset black,0px 1px 2px inset red;
+        @include breakpoint-down(medium){
+            width: 80%;
+        }
+        @include breakpoint-down(small){
+            width: 100%;
+            padding:15px;
+            box-sizing: border-box;
+        }
         input,textarea{
             display: block;
             width: 100%;
             margin:10px 0px;
+            @include breakpoint-down(small){
+                margin:20px 0px;
+            }
         }
         input,textarea{
+            box-sizing: border-box;
             padding:10px;
             background-color: rgba(0, 0, 0, 0.241);
             border:0px;
@@ -77,11 +105,15 @@
                 color:white;
                 opacity: 0.9;
             }
-         
+            @include breakpoint-down(small){
+               margin-right: 5px;
+               margin-bottom: 10px;
+            }
         }
         button{
             width: 103%;
             margin: 0px;
+          
         }
     }
 }

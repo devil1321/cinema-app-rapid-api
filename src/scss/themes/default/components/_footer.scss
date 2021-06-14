@@ -4,6 +4,14 @@
     @include createFlex(row,space-between,center,wrap);
     background: $background-dark;
     box-shadow: 0px 0px 1px inset gray;
+    @include breakpoint-down(medium-sm){
+        padding: 0px 20px;
+    }
+    @include breakpoint-down(small){
+        img{
+            width: 70%;
+        }
+    }
     p{
         position: relative;
         left:0px;
