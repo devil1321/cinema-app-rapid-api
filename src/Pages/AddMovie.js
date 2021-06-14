@@ -98,7 +98,32 @@ const AddMovie = () => {
 
     const handleSubmit = (e) =>{
         e.preventDefault()
+        const resetForm = {
+            id:null,
+            title:null,
+            age:null,
+            cast:null,
+            genre:null,
+            imdbID:null,
+            imdbRating:null,
+            imdbVoteCount:null,
+            overview:null,
+            posterURLs:{
+                orginal:null
+            },
+            significants:null,
+            streamingInfo:null,
+            year:null
+        }
+        let inputs = document.querySelectorAll('input')
+        let textArea = document.querySelector('textarea')
+        console.log(textArea)
+        inputs.forEach(input =>{
+            input.value = ''
+        })
+        textArea.value = ''
         console.log('data',formData)
+        setFormData(resetForm)
     }
 
    
