@@ -1,9 +1,11 @@
-import React,{useEffect,useState} from 'react'
+import React,{useEffect,useState,useContext} from 'react'
+import { DataContext } from '../api/context' 
 import Nav from '../Components/Nav'
 import Footer from '../Components/Footer'
 import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios'
 const AddMovie = () => {
+    const {setIsSet} = useContext(DataContext)
     const [formData,setFormData] = useState({
         id:uuidv4(),
         title:null,
@@ -125,7 +127,7 @@ const AddMovie = () => {
 
     const handleSubmit = (e) =>{
         e.preventDefault()
-        axios.post('http://localhost:3000/results',formData)
+        axios.post('https://cinema-app-json-server.herokuapp.com/results',formData)
             .then(res => console.log(res))
             .catch(err => console.log(err))
 
@@ -135,6 +137,7 @@ const AddMovie = () => {
             age:null,
             cast:null,
             genres:null,
+            countries:null,
             imdbID:null,
             imdbRating:null,
             imdbVoteCount:null,
@@ -156,6 +159,7 @@ const AddMovie = () => {
         })
         textArea.value = ''
         setFormData(resetForm)
+        setIsSet(false)
         window.location.href = '/'
     }
 

@@ -1,11 +1,15 @@
+import axios from 'axios';
 import React,{ createContext, useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import Movies from './movies.json'
 import Genres from './generes.json'
 export const DataContext = createContext({
     model:{},
     detailModel:{},
     data:{},
+    movies:[],
+    isSet:false,
+    setIsSet:()=>{},
+    setMovies:()=>{},
     handleDetailModel:()=>{},
     handleSearch:()=>{},
     handleControls:()=>{},
@@ -19,37 +23,22 @@ export const DataProvider = ({children}) => {
     const [data,setData] = useState([])
     const [model,setModel] = useState({})
     const [detailModel,setDetailModel] = useState(null)
-
+    const [movies,setMovies] = useState([])
+    const [isSet,setIsSet] = useState(false)
+    
     useEffect(()=>{
+        axios.get('https://cinema-app-json-server.herokuapp.com/results')
+            .then(res => {
+                setMovies(res.data)
+                setIsSet(true)
+            })
+            .catch(err =>{console.log(err)})
 
-        // rapid api
-        // const options = {
-        //     method: 'GET',
-        //     url: 'https://streaming-availability.p.rapidapi.com/search/basic',
-        //     params: {
-        //       country: 'us',
-        //       service: 'netflix',
-        //       type: 'movie',
-        //       genre: '18',
-        //       page: '1',
-        //       language: 'en'
-        //     },
-        //     headers: {
-        //       'x-rapidapi-key': 'ee01db358fmshf866f3732da81eap1aa530jsnb32207469154',
-        //       'x-rapidapi-host': 'streaming-availability.p.rapidapi.com'
-        //     }
-        //   };
-          
-        //   axios.request(options).then(function (response) {
-        //       console.log(response.data);
-        //   }).catch(function (error) {
-        //       console.error(error);
-        //   });
-        //   end rapid api
-        // api json
-        // end api json
-        setDataModel(data,Movies,Genres)
-    },[])
+        if(isSet){
+            setDataModel(data,movies,Genres)
+        }
+    },[isSet])
+    
     const handleControls = (next,prev,current,move,carousel,carouselItem,margin) =>{
         var items = document.querySelectorAll(`.${carouselItem}`)
         var carouselDOM = document.querySelector(`.${carousel}`)
@@ -74,7 +63,7 @@ export const DataProvider = ({children}) => {
     const setDataModel = (initData,fetchMovies,fetchGenres) =>{
         let tempData = [...initData]
         let tempGenere = []
-        fetchMovies.results.map(data=>{
+        fetchMovies.map(data=>{
             let genresKeys = Object.keys(fetchGenres)
             data.genres.forEach(genere => {
                 genresKeys.forEach(genereKey=>{
@@ -136,6 +125,10 @@ export const DataProvider = ({children}) => {
             data,
             model,
             detailModel,
+            movies,
+            isSet,
+            setIsSet,
+            setMovies,
             handleDetailModel,
             handleSearch,
             handleControls,
