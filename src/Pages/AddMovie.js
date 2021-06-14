@@ -2,6 +2,111 @@ import React,{useEffect,useState} from 'react'
 import Nav from '../Components/Nav'
 import Footer from '../Components/Footer'
 const AddMovie = () => {
+    const [formData,setFormData] = useState({
+        id:null,
+        title:null,
+        age:null,
+        cast:null,
+        genre:null,
+        imdbID:null,
+        imdbRating:null,
+        imdbVoteCount:null,
+        overview:null,
+        posterURLs:{
+            orginal:null
+        },
+        significants:null,
+        streamingInfo:null,
+        year:null
+    })
+
+
+
+    const handleCast = () => {
+        const form = document.querySelector('form')
+        if(form.cast.value !== ""){
+            const tempCast = form.cast.value.split(',')
+            setFormData(prevState =>({
+                ...prevState,
+                cast:tempCast
+            }))
+        }
+    }
+
+    const handleGenre = () => {
+        const form = document.querySelector('form')
+        if(form.genre.value !== ""){
+            const tempGenre = form.genre.value.split(',')
+            setFormData(prevState =>({
+                ...prevState,
+                genre:tempGenre
+            }))
+        }
+    }
+
+    const handleSignificants = () => {
+        const form = document.querySelector('form')
+        if(form.significants.value !== ""){
+            const tempSignificants = form.significants.value.split(",")
+            console.log(tempSignificants)
+            setFormData(prevState =>({
+                ...prevState,
+                significants:tempSignificants
+            }))
+        }
+    }
+    
+    const handlePosterURLs = () =>{
+        const form = document.querySelector('form')
+        const tempPosterURLs = {
+            orginal:null
+        }
+        if(form.posterURLs.value !== ""){
+            tempPosterURLs.orginal = form.posterURLs.value
+            setFormData(prevState =>({
+                ...prevState,
+                posterURLs:tempPosterURLs
+            }))
+        }
+    }
+
+    const handleStreamingInfo = (e) => {
+        e.preventDefault()
+        const form = document.querySelector('form')
+        if(form.streamingPlatform.value !== "" && form.streamingLink.value !== "" ){
+            const tempStreamingInfo  = {
+                [`${form.streamingPlatform.value}`]:{
+                    us:{
+                        link:form.streamingLink.value
+                    }
+                }
+            }
+            setFormData(prevState =>({
+                ...prevState,
+                streamingInfo:tempStreamingInfo
+     
+            }))
+        }
+    }
+
+    const handleChange = (e) =>{
+        setFormData(prevState =>({
+            ...prevState,
+            [e.target.name]:e.target.value
+        }))
+    }
+
+    const handleSubmit = (e) =>{
+        e.preventDefault()
+        console.log('data',formData)
+    }
+
+   
+
+    useEffect(()=>{
+        console.log(formData)
+    },[formData])
+
     return (
         <div className="add-movie">
             <Nav />
@@ -15,62 +120,67 @@ const AddMovie = () => {
                 </div>
             </div>
             <div className="add-movie__form">
-                <form action="">
+                <form action="" onClick={(e)=>{handleSubmit(e)}}>
                     <div className="add-movie__form-control">
                         <label htmlFor="">Title</label>
-                        <input type="text" />
+                        <input type="text" name="title" onChange={(e)=>{handleChange(e)}} />
+                    </div>
+                    <div className="add-movie__form-control">
+                        <label htmlFor="">Age</label>
+                        <input type="text" name="age" onChange={(e)=>{handleChange(e)}} />
                     </div>
                     <div className="add-movie__form-control">
                         <label htmlFor="">Cast</label>
                         <div className="add-movie__multiple-value">
-                            <input type="text" />
-                            <button>Add Cast</button>
+                            <input type="text" name="cast" />
+                            <button onClick={()=>{handleCast()}}>Add Cast</button>
                         </div>
                     </div>
                     <div className="add-movie__form-control">
-                        <label htmlFor="">Cast</label>
+                        <label htmlFor="">Genre</label>
                         <div className="add-movie__multiple-value">
-                            <input type="text" />
-                            <button>Add Genre</button>
+                            <input type="text" name="genre" />
+                            <button onClick={()=>{handleGenre()}}>Add Genre</button>
                         </div>
                     </div>
                     <div className="add-movie__form-control">
                         <label htmlFor="">ImdbID</label>
-                        <input type="text" />
+                        <input type="text" name="imdbID" onChange={(e)=>{handleChange(e)}}/>
                     </div>
                     <div className="add-movie__form-control">
                         <label htmlFor="">ImdbRating</label>
-                        <input type="text" />
+                        <input type="text" name="imdbRating" onChange={(e)=>{handleChange(e)}}/>
                     </div>
                     <div className="add-movie__form-control">
                         <label htmlFor="">imdbVoteCount</label>
-                        <input type="text" />
+                        <input type="text" name="imdbVoteCount" onChange={(e)=>{handleChange(e)}}/>
                     </div>
                     <div className="add-movie__form-control">
                         <label htmlFor="">Overview</label>
-                        <textarea name="" id="" cols="30" rows="10"></textarea>
+                        <textarea name="" id="" cols="30" rows="10" name="overview" onChange={(e)=>{handleChange(e)}}></textarea>
                     </div>
                     <div className="add-movie__form-control">
                         <label htmlFor="">PosterURLs</label>
-                        <input type="text" />
+                        <input type="text" name="posterURLs" onChange={()=>handlePosterURLs()}/>
                     </div>
                     <div className="add-movie__form-control">
                         <label htmlFor="">Significants</label>
                         <div className="add-movie__multiple-value">
-                            <input type="text" />
-                            <button>Add Significant</button>
+                            <input type="text" name="significants" />
+                            <button onClick={()=>{handleSignificants()}}>Add Significant</button>
                         </div>
                     </div>
                     <div className="add-movie__form-control">
                         <label htmlFor="">Streaming Info</label>
                         <label htmlFor="">Streaming Platform</label>
-                        <input type="text" />
+                        <input type="text" name="streamingPlatform"/>
                         <label htmlFor="">Streaming Link</label>
-                        <input type="text" />
+                        <input type="text" name="streamingLink" />
+                        <button onClick={(e)=>{handleStreamingInfo(e)}}>Add Streaming</button>
                     </div>
                     <div className="add-movie__form-control">
                         <label htmlFor="">Year</label>
-                        <input type="text" />
+                        <input type="text" name="year" onChange={(e)=>{handleChange(e)}}/>
                     </div>
                     <button type="submit">Add Your Favoruite Movie</button>
                 </form>
