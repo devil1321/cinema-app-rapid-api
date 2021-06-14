@@ -79,8 +79,7 @@ const Nav = () => {
                 </div>
                 <i className="fa fa-caret-down nav__dropdown" onClick={(e)=>handleMenu(e)}></i>
                     <ul className="nav__dropdown-menu" onMouseLeave={(e)=>handleMenuClose(e)}>
-                        <li className="nav__dropdown-menu-item"><Link to="#">Profile</Link></li>
-                        <li className="nav__dropdown-menu-item"><Link to="#">Settings</Link></li>
+                        <li className="nav__dropdown-menu-item"><Link to="/profile">Profile</Link></li>
                         <li className="nav__dropdown-menu-item"><Link to="#">Account</Link></li>
                         <li className="nav__dropdown-menu-item"><Link to='#'>Log Out</Link></li>
                     </ul>
