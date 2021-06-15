@@ -1,0 +1,17 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "login":"mike123",
+      "name": "Mike",
+      "surname": "Jacksons",
+      "password":"jacksons123",
+      "age": 23,
+      "gender": "male",
+      "country": "USA",
+      "billingDate": "2021/11/21",
+      "plan": "Part Time",
+      "accountState": "active"
+    }
+  ]
+}

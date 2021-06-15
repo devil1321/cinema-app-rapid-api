@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 const Nav = () => {
     const [searchItems,setSearchItems] = useState([])
-    const {data, handleSearch, handleDetailModel} = useContext(DataContext)
+    const {data, handleSearch, handleDetailModel ,setIsAuthenticated} = useContext(DataContext)
    
     const inputControl = (e) =>{
     e.stopPropagation()
@@ -41,7 +41,6 @@ const Nav = () => {
     menu.style.boxShadow = '0px 50px 50px rgb(15, 15, 15) inset'
     }
 
-    
 
     return (
         <div className="nav">
@@ -79,9 +78,9 @@ const Nav = () => {
                 </div>
                 <i className="fa fa-caret-down nav__dropdown" onClick={(e)=>handleMenu(e)}></i>
                     <ul className="nav__dropdown-menu" onMouseLeave={(e)=>handleMenuClose(e)}>
-                        <li className="nav__dropdown-menu-item"><Link to="/profile">Profile</Link></li>
-                        <li className="nav__dropdown-menu-item"><Link to="#">Account</Link></li>
-                        <li className="nav__dropdown-menu-item"><Link to='#'>Log Out</Link></li>
+                        <Link to="/profile"><li className="nav__dropdown-menu-item">Profile</li></Link>
+                        <Link to="#"><li className="nav__dropdown-menu-item">Account</li></Link>
+                        <Link to='#' onClick={()=>{setIsAuthenticated(false)}}><li className="nav__dropdown-menu-item">Log Out</li></Link>
                     </ul>
                
             </div>

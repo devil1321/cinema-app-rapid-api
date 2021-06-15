@@ -13,7 +13,7 @@ const Footer = () => {
             </div>
             <div className="col-3">
                 <ul>
-                    <li> <i className="fa fa-chevron-right"></i> <Link to="/">Home</Link></li>
+                    <li> <i className="fa fa-chevron-right"></i> <Link to="/home">Home</Link></li>
                     <li> <i className="fa fa-chevron-right"></i> <Link to="https://www.netflix.com">Netflix</Link></li>
                     <li> <i className="fa fa-chevron-right"></i> <Link to="https://www.imdb.com/">IMDb</Link></li>
                 </ul>

@@ -1,0 +1,74 @@
+.sign-in{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color:white;
+    &__content{
+        @include createFlex(column,center,center,null);
+        height: 83vh;
+        background: rgb(116,116,116);
+        background: linear-gradient(360deg, rgb(43, 43, 43) 0%, rgba(0,0,0,1) 100%);
+        box-shadow: 0px 0px 0px inset black;
+    }
+    &__title{
+        font-size:pxToRem(32);
+        text-align: center;
+        text-decoration: underline;
+    }
+    &__form-wrapper{
+        width: 30%;
+        height: 40%;
+        background-color: gray;
+        padding:30px;
+        margin: 0px auto;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        color:white;
+        background-color: $card-background;
+        border-radius: 3px;
+        box-shadow: 0px 20px 70px inset black,0px 1px 3px inset red,0px 0px 3px red;
+        @include createFlex(row,center,center,null);
+        form{
+            width: 100%;
+            input{
+                cursor: pointer;
+                display: block;
+                margin:10px 0px;
+                width: 100%;
+                box-sizing: border-box;
+                padding:10px;
+                background-color: rgba(0, 0, 0, 0.241);
+                border:0px;
+                box-shadow: 0px 0px 2px inset red;
+                border-radius: 5px;
+                color:white;
+                &:focus{
+                    outline: none;
+                    box-shadow: 0px 0px 4px inset $tabs-color;
+                }
+                &:hover{
+                    box-shadow: 0px 0px 4px inset $tabs-color;
+                }
+            }
+            button{
+                display: block;
+                cursor: pointer;
+                padding:10px 20px;
+                width: 130px;
+                margin-left: auto;
+                margin-right: -18px;
+                background-color: $tabs-color;
+                box-shadow: 0px 0px 2px inset;
+                border:0px;
+                border-radius: 5px;
+                margin-right: 0px;
+                @include createFlex(row,center,center,null);
+                &:hover{
+                    box-shadow:0px 0px 10px red;
+                    color:white;
+                    opacity: 0.9;
+                }
+            }
+        }
+    }
+    .footer{
+        margin: 0px;
+    }
+}

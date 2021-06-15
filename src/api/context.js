@@ -2,12 +2,19 @@ import axios from 'axios';
 import React,{ createContext, useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import Genres from './generes.json'
+
 export const DataContext = createContext({
     model:{},
     detailModel:{},
     data:{},
     movies:[],
     isSet:false,
+    user:null,
+    isLogged:false,
+    isAuthenticated:false,
+    setIsAuthenticated:()=>{},
+    setIsLogged:()=>{},
+    setUser:()=>{},
     setIsSet:()=>{},
     setMovies:()=>{},
     handleDetailModel:()=>{},
@@ -25,7 +32,11 @@ export const DataProvider = ({children}) => {
     const [detailModel,setDetailModel] = useState(null)
     const [movies,setMovies] = useState([])
     const [isSet,setIsSet] = useState(false)
-    
+
+    const [user,setUser] = useState(null)
+    const [isLogged,setIsLogged] = useState(false)
+    const [isAuthenticated, setIsAuthenticated] = useState(false)
+
     useEffect(()=>{
         axios.get('https://cinema-app-json-server.herokuapp.com/results')
             .then(res => {
@@ -33,10 +44,15 @@ export const DataProvider = ({children}) => {
                 setIsSet(true)
             })
             .catch(err =>{console.log(err)})
+            
+        axios.get('http://localhost:4000/users/' + 1)
+            .then(res => setUser(res.data))
+            .catch(err =>{if(err) throw err})
 
         if(isSet){
             setDataModel(data,movies,Genres)
         }
+       
     },[isSet])
     
     const handleControls = (next,prev,current,move,carousel,carouselItem,margin) =>{
@@ -127,6 +143,12 @@ export const DataProvider = ({children}) => {
             detailModel,
             movies,
             isSet,
+            user,
+            isLogged,
+            isAuthenticated,
+            setIsAuthenticated,
+            setIsLogged,
+            setUser,
             setIsSet,
             setMovies,
             handleDetailModel,
