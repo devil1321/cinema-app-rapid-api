@@ -6,9 +6,10 @@ import Footer from '../Components/Footer'
 const Account = () => {
 
     const [isOpen,setIsOpen] = useState(false)
+    const [isUpdated,setIsUpdated] = useState(false)
     const { user, setUser } = useContext(DataContext)
     if(user){
-        var {id, login, password, name, surname, age, gender, country, billingDate, plan, accountState } = user
+        var {id, login, password, name, surname, age, gender, country, billingDate, plan, accountState, image } = user
     }
 
     const handleChange = (e) =>{
@@ -21,8 +22,42 @@ const Account = () => {
     const handleSubmit = (e) =>{
         e.preventDefault()
         axios.put('http://localhost:4000/users/' + id, user)
-            .then(res => console.log(res.data))
+            .then(res => {
+                setIsUpdated(true)
+                setTimeout(()=>{
+                    setIsUpdated(false)
+                },2000)
+            })
             .catch(err => console.log(err))
+    }
+
+    const handleImage = (e) =>{
+        let file = e.target.files[0]
+        const reader = new FileReader();
+        reader.addEventListener('load', (event) => {
+            const img = document.querySelector('.account__fake-field')
+            img.src = event.target.result;
+          });
+          reader.readAsDataURL(file);
+          const getDataUrl = (img) => {
+            // Create canvas
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            // Set width and height
+            canvas.width = img.width;
+            canvas.height = img.height;
+            // Draw the image
+            ctx.drawImage(img, 0, 0);
+            return canvas.toDataURL('image/jpeg');
+         }
+        const img = document.querySelector('.account__fake-field')
+        img.addEventListener('load', function (event) {
+            const dataUrl = getDataUrl(event.currentTarget);
+            setUser(prevState => ({
+                ...prevState,
+                image:dataUrl
+            }));
+        });
     }
 
     const handlePlan = (e) =>{
@@ -43,7 +78,19 @@ const Account = () => {
             <div className="account__content">
                 <h1>{name} {surname}</h1>
                 <div className="account__data">
-                <img src="/assets/profile.png" alt="" />
+                <div className="account__profile-image">
+                    <img src={image} alt="" />
+                    {isUpdated && <div className="account__alert correct">
+                                        Profile Updated
+                                    </div>}
+                    <form action="" onSubmit={(e)=>{handleSubmit(e)}}>
+                        <div className="account__image-upload">
+                            <input onChange={(e)=>{handleImage(e)}} className="account__alert image" type="file" name="image" />
+                            <button type="submit">Upload/Change</button>
+                        </div>
+                    </form>
+                    <img src="" alt="" className="account__fake-field" />
+                </div>
                     <form action="" onSubmit={(e)=>{handleSubmit(e)}}>
                         <div className="account__field">
                             <div className="account__input-field">
@@ -85,7 +132,7 @@ const Account = () => {
                                 <input type="text" name="billingDate" value={billingDate}  onChange = {(e)=>{handleChange(e)}}/>
                             </div>
                         </div>
-                        <div className="account__field">
+                        <div className="account__field select">
                             <div className="account__input-field options close" >
                                 <label htmlFor="">Plan:</label>
                                 <input className="account__plan" type="text" name="plan" value={plan} onClick={()=>{setIsOpen(!isOpen)}}  onChange = {(e)=>{handleChange(e)}}/>

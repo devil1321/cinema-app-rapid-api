@@ -30,7 +30,7 @@ const SignIn = () => {
         })
             .then(res => {
                 if(user.password = formData.password){
-                    setUser(res.data)
+                    setUser(res.data[0])
                     setIsAuthenticated(true)
                     history.push('/home')
                 }else{

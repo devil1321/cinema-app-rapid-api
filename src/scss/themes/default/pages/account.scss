@@ -22,22 +22,60 @@
         }
 
     }
+    .select{
+        input{
+            cursor: pointer;
+        }
+    }
     &__content{
         padding:0px 80px;
     }
     &__data{
         @include createFlex(row,space-between,flex-start,null);
-        img{
-            width: 50%;
-        }
         form{
             width: 50%;
             margin-left: 20px;
         }
     }
+    &__profile-image{
+        width: 50%;
+        overflow: hidden;
+        img{
+            width: 100%;
+        }
+        form{
+            margin: 0px;
+            padding: 0px;
+            width: 96.5%;
+        }
+    }
+    &__image-upload{
+        margin: 0px;
+        padding: 0px;
+        width: 97%;
+        button{
+            min-width: 104%;
+        }
+    }
+    &__fake-field{
+        visibility: hidden;
+    }
+    &__alert{
+       
+        margin:5px 0px;
+        padding:10px;
+        box-shadow: 0px 0px 3px inset green;
+        border-radius: 5px;
+    }
+    &__alert.correct{
+        max-width: 94%;
+    }
+    &__alert.image{
+        width: 100%;
+        box-shadow: 0px 0px 3px inset red;
+    }
     &__field{
         input{
-            cursor: pointer;
             display: block;
             margin:10px 0px;
             width: 100%;
@@ -80,4 +118,5 @@
             box-shadow: 0px 0px 2px inset red;
         }
     }
+   
 }
