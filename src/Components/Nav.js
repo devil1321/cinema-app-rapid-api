@@ -1,11 +1,13 @@
-import React,{useState,useContext} from 'react'
+import React,{useEffect,useState,useContext} from 'react'
 import {DataContext} from '../api/context'
 import { Link } from 'react-router-dom'
 
 const Nav = () => {
     const [searchItems,setSearchItems] = useState([])
-    const {data, handleSearch, handleDetailModel ,setIsAuthenticated} = useContext(DataContext)
-   
+    const { data, user, handleSearch, handleDetailModel ,setIsAuthenticated} = useContext(DataContext)
+    if(user){
+        var { image } = user
+    }
     const inputControl = (e) =>{
     e.stopPropagation()
     const icon = document.querySelector('.nav__search i')
@@ -41,7 +43,10 @@ const Nav = () => {
     menu.style.boxShadow = '0px 50px 50px rgb(15, 15, 15) inset'
     }
 
+    useEffect(()=>{
 
+    },[user])
+    
     return (
         <div className="nav">
         <Link to="/" className="nav__logo">
@@ -71,7 +76,7 @@ const Nav = () => {
                 </Link>
                 <i className="fa fa-bell"></i>
                 <div className="nav__menu-profile">
-                    <img src="/assets/profile.png" alt="profile-pic" />
+                    <img src={image} alt="profile-pic" />
                 </div>
                 <div className="nav__menu-user">
                     <p>Peter Jacksons</p>
