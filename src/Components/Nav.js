@@ -46,7 +46,7 @@ const Nav = () => {
     useEffect(()=>{
 
     },[user])
-    
+
     return (
         <div className="nav">
         <Link to="/" className="nav__logo">
@@ -84,7 +84,6 @@ const Nav = () => {
                 <i className="fa fa-caret-down nav__dropdown" onClick={(e)=>handleMenu(e)}></i>
                     <ul className="nav__dropdown-menu" onMouseLeave={(e)=>handleMenuClose(e)}>
                         <Link to="/profile"><li className="nav__dropdown-menu-item">Profile</li></Link>
-                        <Link to="#"><li className="nav__dropdown-menu-item">Account</li></Link>
                         <Link to='#' onClick={()=>{setIsAuthenticated(false)}}><li className="nav__dropdown-menu-item">Log Out</li></Link>
                     </ul>
                

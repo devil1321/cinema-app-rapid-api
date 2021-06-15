@@ -67,7 +67,11 @@ const Account = () => {
         }))
         setIsOpen(false)
     }
-
+    const handleDelete = (e) =>{
+        axios.delete('http://localhost:4000/users/' + id)
+            .then(res => console.log('deleted'))
+            .catch(err => console.log(err))
+    }
     useEffect(()=>{
         
     },[user])
@@ -150,6 +154,7 @@ const Account = () => {
                         <button>Update Personal Info</button>
                     </form>
                 </div>
+                <button className="delete" onClick={(e)=>{handleDelete()}}>Delete Account</button>
             </div>
             <Footer />
         </div>

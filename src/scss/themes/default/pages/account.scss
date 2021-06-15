@@ -1,6 +1,9 @@
 .account{
     color:white;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    .delete{
+        background-color: red;
+    }
     button{
         display: block;
         cursor: pointer;
