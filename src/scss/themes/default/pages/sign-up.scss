@@ -1,0 +1,76 @@
+.sign-up{
+   width: 100vw;
+   height: 90vh;
+   font-family: Verdana, Geneva, Tahoma, sans-serif;
+   @include createFlex(column,center,center,null);
+   &__form-wrapper{
+        position: relative;
+        top:30px;
+        left:0px;
+        padding:30px;
+        width:40%;
+        margin: 0px auto;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        color:white;
+        background-color: $card-background;
+        box-shadow: 0px 20px 70px inset black,0px 1px 2px inset red;
+        h1{
+           color:white;
+           padding:10px 20px;
+           background: linear-gradient(90deg,skyblue 10%, green);
+           text-align: center;
+           border-radius: 5px;
+        }
+        h2{
+            text-align: center;
+            color:red;
+        }
+        label{
+            color:white;
+        }
+     
+        
+    }
+    &__field{
+        width: 100%;
+        input{
+            width: 100%;
+            display: block;
+            box-sizing: border-box;
+            margin:10px 0px;
+            padding:10px;
+            background-color: rgba(0, 0, 0, 0.241);
+            border:0px;
+            box-shadow: 0px 0px 2px inset red;
+            border-radius: 5px;
+            color:white;
+            &:focus{
+                outline: none;
+                box-shadow: 0px 0px 4px inset $tabs-color;
+            }
+        }
+    }
+    &__radio-group{
+        width: 100%;
+        @include createFlex(row,flex-start,center,null);
+    }
+    &__radio{
+        label{
+            margin:0px 5px;
+        }
+    }
+    button{
+        font-style: italic;
+        color:white;
+        font-weight: bold;
+        display: block;
+        padding:15px 20px;
+        width: 230px;
+        margin:20px auto;
+        background-color: red;
+        box-shadow: 0px 0px 2px inset, 0px 0px 10px red;
+        border:0px;
+        border-radius: 5px;
+        @include createFlex(row,center,center,null);
+    }
+}

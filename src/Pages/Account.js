@@ -9,7 +9,7 @@ const Account = () => {
     const [isUpdated,setIsUpdated] = useState(false)
     const { user, setUser } = useContext(DataContext)
     if(user){
-        var {id, login, password, name, surname, age, gender, country, billingDate, plan, accountState, image } = user
+        var {id, login, email, password, name, surname, age, gender, country, billingDate, plan, accountState, image } = user
     }
 
     const handleChange = (e) =>{
@@ -102,6 +102,10 @@ const Account = () => {
                                 <input type="text" name="login" value={login} onChange = {(e)=>{handleChange(e)}}/>
                             </div>
                             <div className="account__input-field">
+                                <label htmlFor="">Email:</label>
+                                <input type="text" name="email" value={email} onChange = {(e)=>{handleChange(e)}}/>
+                            </div>
+                            <div className="account__input-field">
                                 <label htmlFor="">Password:</label>
                                 <input  name="password" type="password" value={password}  onChange = {(e)=>{handleChange(e)}}/>
                             </div>
@@ -109,11 +113,11 @@ const Account = () => {
                         <div className="account__field">
                             <div className="account__input-field">
                                 <label htmlFor="">Name:</label>
-                                <input type="text" name="name" value={name} onChange = {(e)=>{handleChange(e)}}/>
+                                <input type="text" name="name" value={name ? name : ""} onChange = {(e)=>{handleChange(e)}}/>
                             </div>
                             <div className="account__input-field">
                                 <label htmlFor="">Surname:</label>
-                                <input type="text" name="surname" value={surname}  onChange = {(e)=>{handleChange(e)}}/>
+                                <input type="text" name="surname" value={surname ? surname : ""}  onChange = {(e)=>{handleChange(e)}}/>
                             </div>
                         </div>
                         <div className="account__field">
@@ -123,17 +127,17 @@ const Account = () => {
                             </div>
                             <div className="account__input-field">
                                 <label htmlFor="">Gender:</label>
-                                <input type="text" name="gender" value={gender}  onChange = {(e)=>{handleChange(e)}}/>
+                                <input type="text" name="gender" value={gender ? gender : ""}  onChange = {(e)=>{handleChange(e)}}/>
                             </div>
                         </div>
                         <div className="account__field">
                             <div className="account__input-field">
                                 <label htmlFor="">Country:</label>
-                                <input type="text" name="country" value={country} onChange = {(e)=>{handleChange(e)}} />
+                                <input type="text" name="country" value={country ? country : ""} onChange = {(e)=>{handleChange(e)}} />
                             </div>
                             <div className="account__input-field">
                                 <label htmlFor="">Billing Date:</label>
-                                <input type="text" name="billingDate" value={billingDate}  onChange = {(e)=>{handleChange(e)}}/>
+                                <input type="text" name="billingDate" value={billingDate ? billingDate : ""}  onChange = {(e)=>{handleChange(e)}}/>
                             </div>
                         </div>
                         <div className="account__field select">
@@ -148,7 +152,7 @@ const Account = () => {
                             </div>
                             <div className="account__input-field">
                                 <label htmlFor="">Account State:</label>
-                                <input type="text" name="accountState" value={accountState} onChange = {(e)=>{handleChange(e)}} />
+                                <input type="text" name="accountState" value={accountState ? accountState : ""} onChange = {(e)=>{handleChange(e)}} />
                             </div>
                         </div>
                         <button>Update Personal Info</button>

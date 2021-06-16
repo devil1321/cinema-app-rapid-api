@@ -1,6 +1,9 @@
 .sign-in{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color:white;
+    a{
+        width: 100%;
+    }
     &__content{
         @include createFlex(column,center,center,null);
         height: 83vh;
@@ -13,18 +16,40 @@
         text-align: center;
         text-decoration: underline;
     }
+    &__form-logo{
+        width: 100%;
+        button{
+            font-style: italic;
+            color:white;
+            font-weight: bold;
+            display: block;
+            padding:15px 20px;
+            width: 230px;
+            margin:20px auto;
+            background-color: red;
+            box-shadow: 0px 0px 2px inset, 0px 0px 10px red;
+            border:0px;
+            border-radius: 5px;
+            @include createFlex(row,center,center,null);
+           
+        }
+    }
     &__form-wrapper{
         width: 30%;
-        height: 40%;
+        height:60%;
         background-color: gray;
         padding:30px;
         margin: 0px auto;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
         color:white;
-        background-color: $card-background;
+        background-color: black;
         border-radius: 3px;
-        box-shadow: 0px 20px 70px inset black,0px 1px 3px inset red,0px 0px 3px red;
-        @include createFlex(row,center,center,null);
+        box-shadow:0px 0px 3px red;
+        @include createFlex(row,center,center,wrap);
+        img{
+            display: block;
+            width: 30%;
+        }
         form{
             width: 100%;
             input{
@@ -66,6 +91,11 @@
                 }
             }
         }
+    }
+    &__buttons-group{
+        margin: 0px auto;
+        width: 65%;
+        @include createFlex(row,center,center,null);
     }
     .footer{
         margin: 0px;

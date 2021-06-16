@@ -44,11 +44,7 @@ export const DataProvider = ({children}) => {
                 setIsSet(true)
             })
             .catch(err =>{console.log(err)})
-            
-        axios.get('http://localhost:4000/users/' + 1)
-            .then(res => setUser(res.data))
-            .catch(err =>{if(err) throw err})
-
+    
         if(isSet){
             setDataModel(data,movies,Genres)
         }
