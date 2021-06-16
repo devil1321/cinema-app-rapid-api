@@ -6,7 +6,7 @@ const Nav = () => {
     const [searchItems,setSearchItems] = useState([])
     const { data, user, handleSearch, handleDetailModel ,setIsAuthenticated} = useContext(DataContext)
     if(user){
-        var { image } = user
+        var { image, name, surname } = user
     }
     const inputControl = (e) =>{
     e.stopPropagation()
@@ -79,7 +79,7 @@ const Nav = () => {
                     <img src={image} alt="profile-pic" />
                 </div>
                 <div className="nav__menu-user">
-                    <p>Peter Jacksons</p>
+                    <p>{name} {surname}</p>
                 </div>
                 <i className="fa fa-caret-down nav__dropdown" onClick={(e)=>handleMenu(e)}></i>
                     <ul className="nav__dropdown-menu" onMouseLeave={(e)=>handleMenuClose(e)}>
